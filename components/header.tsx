@@ -24,17 +24,22 @@ export function Header() {
   return (
     <header className="sticky top-0 z-20 border-b border-slate-200/90 bg-white/80 backdrop-blur-xl">
       <Container className="flex min-h-16 items-center justify-between gap-5 py-3">
-        <div className="flex items-center gap-3">
+        <div className="flex min-w-0 items-center gap-3">
           <Link
             href="/"
-            className="shrink-0 text-base font-semibold tracking-tight text-ink-950"
+            className="group inline-flex shrink-0 items-center gap-3 text-ink-950"
             aria-label="Chase Chen 首页"
             onClick={() => setMenuOpen(false)}
           >
-            <span className="mr-2 text-brand-600">&lt;/&gt;</span>
-            Chase Chen
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-blue-100 bg-brand-50 text-brand-600 transition group-hover:border-blue-200 group-hover:bg-blue-100/70">
+              <span className="text-sm font-semibold tracking-tight">CC</span>
+            </span>
+            <span className="text-base font-semibold tracking-tight transition group-hover:text-brand-700">
+              Chase Chen
+            </span>
           </Link>
-          <span className="hidden rounded-full border border-blue-100 bg-brand-50 px-3 py-1 text-xs text-brand-700 lg:inline-flex">
+          <span className="hidden h-7 items-center gap-2 rounded-full border border-slate-200 bg-white px-3 text-xs font-medium text-slate-600 lg:inline-flex">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
             软件工程学生
           </span>
         </div>
