@@ -41,7 +41,18 @@ export function ProjectCard({ project }: { project: Project }) {
           <span className="text-slate-400">源码待整理</span>
         )}
         <span className="text-slate-300">/</span>
-        <span className="text-slate-400">演示待更新</span>
+        {project.demoUrl ? (
+          <a
+            href={project.demoUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium text-brand-600 transition hover:text-brand-700"
+          >
+            在线访问
+          </a>
+        ) : (
+          <span className="text-slate-400">Demo: Coming soon</span>
+        )}
       </div>
     </article>
   );

@@ -1,89 +1,67 @@
 # Chase Chen Portfolio
 
-个人技术作品集网站，用于展示项目、技术博客、实验作品和软件工程学习成长记录。
+Chase Chen 的个人技术作品集网站。作为一名软件工程大一学生，我用它记录 Web 开发学习过程、项目实践、技术文章和小型实验，并持续积累工程能力。
 
-## Tech Stack
+## 在线访问
 
-- Next.js (App Router)
+- 网站：[https://www.chase0426.com](https://www.chase0426.com)
+- GitHub：[https://github.com/b1rd426](https://github.com/b1rd426)
+
+## 技术栈
+
+- Next.js（App Router）
 - TypeScript
 - Tailwind CSS
 - Vercel
 
-## Pages
+## 页面结构
 
-- `/` 首页：个人简介、精选项目、最新博客、技能栈与联系方式
-- `/projects` 项目页：项目作品列表
-- `/blog` 博客页：文章列表与分类
-- `/lab` 实验室页：小工具与技术实验
-- `/about` 关于我页：学习方向、技能、目标与联系入口
+- `/`：个人简介、精选项目、学习记录与联系方式
+- `/projects`：已完成及规划中的项目
+- `/blog`：博客文章索引
+- `/lab`：小工具与技术实验记录
+- `/about`：学习方向、技术栈与阶段目标
 
-## Local Development
+## 本地运行
 
-确保本地已安装 Node.js 18.18 或更高版本，然后运行：
+需要 Node.js 18.18 或更高版本。
 
 ```bash
 npm install
 npm run dev
 ```
 
-浏览器访问 [http://localhost:3000](http://localhost:3000)。
+访问 [http://localhost:3000](http://localhost:3000) 查看本地站点。
 
-生产构建检查：
+构建检查：
 
 ```bash
 npm run build
-npm run start
+npm run typecheck
 ```
 
-## Content Management
+## 添加内容
 
-站点 MVP 使用本地 TypeScript 数据文件，不需要数据库或后台系统。
+当前站点使用本地 TypeScript 数据文件管理内容，不依赖数据库或后台系统。
 
-### 添加新项目
+### 添加项目
 
-编辑 `data/projects.ts`，在 `projects` 数组中新增对象：
+在 `data/projects.ts` 的 `projects` 数组中添加项目对象。可用字段包括 `status`、`featured`、`sourceUrl` 和 `demoUrl`；尚未上线的项目请不填写 `demoUrl`，页面会显示 `Demo: Coming soon`。
 
-```ts
-{
-  title: "项目名称",
-  description: "项目说明",
-  stack: ["Next.js", "TypeScript"],
-  category: "Web 开发",
-  status: "开发中",
-  featured: true,
-  learningFocus: "希望通过项目练习的重点",
-}
-```
+### 添加博客
 
-`featured: true` 的项目会显示在首页精选项目区域。
+在 `data/posts.ts` 的 `posts` 数组中添加文章卡片信息，包括标题、摘要、分类、日期、阅读时间和标签。当前版本展示文章索引，后续可逐步补充正文页面。
 
-### 添加新博客
+### 添加实验室内容
 
-编辑 `data/posts.ts`，在 `posts` 数组中新增对象：
+在 `data/experiments.ts` 的 `experiments` 数组中添加实验信息，包括说明、技术标签、当前状态和下一步计划。
 
-```ts
-{
-  title: "文章标题",
-  excerpt: "文章摘要",
-  category: "项目复盘",
-  date: "2026.06",
-  readTime: "5 分钟阅读",
-  tags: ["Next.js", "复盘"],
-}
-```
+## 部署
 
-MVP 版本提供文章列表展示，后续可按需扩展 Markdown / MDX 详情页。
+网站部署于 [Vercel](https://vercel.com)。将仓库导入 Vercel 后，可使用默认的 Next.js 构建配置完成部署；之后推送到部署分支会触发自动更新。
 
-### 添加新实验
+## 后续计划
 
-编辑 `data/experiments.ts`，向 `experiments` 数组添加实验卡片数据。每项实验包含技术方向 `tags` 与下一步计划 `nextStep`，便于真实记录推进过程。
-
-## Deploy To Vercel
-
-1. 将项目推送到 GitHub 仓库。
-2. 登录 [Vercel](https://vercel.com)，选择 **Add New Project**。
-3. 导入 GitHub 上的 `chasechen-portfolio` 仓库。
-4. Vercel 会自动识别 Next.js 配置，保留默认构建设置并点击 **Deploy**。
-5. 后续每次推送到部署分支，Vercel 会自动重新部署。
-
-此 MVP 不依赖环境变量、数据库或外部 API。
+- 持续补充真实完成的项目与学习复盘
+- 为博客逐步增加可阅读的正文内容
+- 将实验室中的规划条目按实际进度实现并更新状态

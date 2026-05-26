@@ -7,6 +7,7 @@ export type Project = {
   featured: boolean;
   learningFocus: string;
   sourceUrl?: string;
+  demoUrl?: string;
 };
 
 export const projects: Project[] = [
@@ -20,6 +21,7 @@ export const projects: Project[] = [
     featured: true,
     learningFocus: "组件拆分、响应式布局与部署流程",
     sourceUrl: "https://github.com/b1rd426/chasechen-portfolio",
+    demoUrl: "https://www.chase0426.com",
   },
   {
     title: "算法可视化实验室",
