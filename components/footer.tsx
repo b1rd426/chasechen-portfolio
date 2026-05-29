@@ -1,3 +1,4 @@
+import { GitBranch } from "lucide-react";
 import Link from "next/link";
 
 import { Container } from "@/components/container";
@@ -5,7 +6,7 @@ import { profile } from "@/data/profile";
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-white/60">
+    <footer className="border-t border-slate-200 bg-white/70 backdrop-blur">
       <Container className="flex flex-col gap-4 py-7 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-medium text-slate-800">Chase Chen</p>
@@ -16,11 +17,12 @@ export function Footer() {
             关于我
           </Link>
           <a
-            className="transition hover:text-brand-600"
+            className="inline-flex items-center gap-1.5 transition hover:text-brand-600"
             href={profile.github}
             target="_blank"
             rel="noreferrer"
           >
+            <GitBranch className="h-4 w-4" />
             GitHub
           </a>
           <span>联系：GitHub</span>
