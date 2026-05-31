@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { Sparkles } from "lucide-react";
 
 import { Container } from "@/components/container";
+import { GlowCard } from "@/components/glow-card";
 import { PageHero } from "@/components/page-hero";
 import { ProjectCard } from "@/components/project-card";
+import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
@@ -20,15 +23,19 @@ export default function ProjectsPage() {
       />
       <section className="py-14 sm:py-20">
         <Container>
-          <div className="mb-10 flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-600 shadow-card">
-            <span className="h-2 w-2 shrink-0 rounded-full bg-brand-500" />
-            当前以课程基础和 Web 开发练习为主，项目状态会随实际进度更新。
-          </div>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
-          </div>
+          <RevealOnScroll>
+            <GlowCard className="mb-10 p-5">
+              <p className="flex items-center gap-3 text-sm leading-7 text-slate-300">
+                <Sparkles className="h-4 w-4 shrink-0 text-cyan-200" />
+                当前以课程基础和 Web 开发练习为主，项目状态会随实际进度更新；没有 Demo 的项目不会伪装成已上线。
+              </p>
+            </GlowCard>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {projects.map((project) => (
+                <ProjectCard key={project.title} project={project} />
+              ))}
+            </div>
+          </RevealOnScroll>
         </Container>
       </section>
     </>

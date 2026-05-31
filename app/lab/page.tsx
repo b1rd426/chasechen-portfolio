@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import { FlaskConical, Route } from "lucide-react";
 
 import { Container } from "@/components/container";
 import { ExperimentCard } from "@/components/experiment-card";
+import { GlowCard } from "@/components/glow-card";
 import { PageHero } from "@/components/page-hero";
+import { RevealOnScroll } from "@/components/reveal-on-scroll";
+import { SectionHeader } from "@/components/section-header";
 import { experiments } from "@/data/experiments";
 
 export const metadata: Metadata = {
@@ -11,6 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default function LabPage() {
+  const roadmap = ["想法拆解", "最小 Demo", "交互优化", "复盘记录"];
+
   return (
     <>
       <PageHero
@@ -20,14 +26,50 @@ export default function LabPage() {
       />
       <section className="py-14 sm:py-20">
         <Container>
-          <div className="grid gap-5 md:grid-cols-2">
-            {experiments.map((experiment) => (
-              <ExperimentCard
-                key={experiment.title}
-                experiment={experiment}
-              />
-            ))}
-          </div>
+          <RevealOnScroll>
+            <div className="mb-10 grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
+              <GlowCard className="p-6" tone="violet">
+                <p className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-100">
+                  <FlaskConical className="h-4 w-4" />
+                  Lab Focus
+                </p>
+                <h2 className="mt-4 text-2xl font-semibold text-white">
+                  从小实验验证想法
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-slate-300">
+                  这里优先记录算法可视化、Web 小工具和 AI 学习助手方向。每个实验都保留真实状态和下一步，不把规划中的内容包装成已完成。
+                </p>
+              </GlowCard>
+              <GlowCard className="p-6" tone="pink">
+                <SectionHeader
+                  eyebrow="Roadmap"
+                  title="实验推进节奏"
+                  description="先把边界拆清楚，再做最小可演示版本，最后补交互与复盘。"
+                />
+                <div className="mt-6 grid gap-4 sm:grid-cols-4">
+                  {roadmap.map((step, index) => (
+                    <div key={step} className="border-l border-white/10 pl-4">
+                      <Route className="mb-3 h-4 w-4 text-cyan-200" />
+                      <p className="text-xs font-semibold text-slate-500">
+                        0{index + 1}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-slate-100">
+                        {step}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </GlowCard>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {experiments.map((experiment) => (
+                <ExperimentCard
+                  key={experiment.title}
+                  experiment={experiment}
+                />
+              ))}
+            </div>
+          </RevealOnScroll>
         </Container>
       </section>
     </>

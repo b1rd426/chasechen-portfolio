@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { Tags } from "lucide-react";
 
 import { Container } from "@/components/container";
+import { GlowCard } from "@/components/glow-card";
 import { PageHero } from "@/components/page-hero";
 import { PostCard } from "@/components/post-card";
+import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { Tag } from "@/components/tag";
 import { postCategories, posts } from "@/data/posts";
 
@@ -21,21 +24,24 @@ export default function BlogPage() {
       />
       <section className="py-14 sm:py-20">
         <Container>
-          <div className="mb-10 rounded-2xl border border-slate-200 bg-white p-5 shadow-card">
-            <p className="mb-4 text-sm font-medium text-slate-500">
-              文章方向
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {postCategories.map((category) => (
-                <Tag key={category}>{category}</Tag>
+          <RevealOnScroll>
+            <GlowCard className="mb-10 p-5">
+              <p className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-300">
+                <Tags className="h-4 w-4 text-cyan-200" />
+                文章方向
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {postCategories.map((category) => (
+                  <Tag key={category}>{category}</Tag>
+                ))}
+              </div>
+            </GlowCard>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
+                <PostCard key={post.title} post={post} />
               ))}
             </div>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <PostCard key={post.title} post={post} />
-            ))}
-          </div>
+          </RevealOnScroll>
         </Container>
       </section>
     </>

@@ -3,21 +3,31 @@ import {
   BookOpenText,
   Brain,
   Code2,
+  Cpu,
+  FlaskConical,
   GitBranch,
-  GraduationCap,
   Layers3,
+  Lightbulb,
   Rocket,
   Sparkles,
   Target,
+  Terminal,
+  Workflow,
 } from "lucide-react";
 import Link from "next/link";
 
+import { AnimatedTechMarquee } from "@/components/animated-tech-marquee";
+import { BentoGrid } from "@/components/bento-grid";
 import { Container } from "@/components/container";
+import { ExperimentCard } from "@/components/experiment-card";
+import { GlowCard } from "@/components/glow-card";
+import { GradientButton } from "@/components/gradient-button";
 import { PostCard } from "@/components/post-card";
 import { ProjectCard } from "@/components/project-card";
-import { Reveal } from "@/components/reveal";
-import { SectionHeading } from "@/components/section-heading";
+import { RevealOnScroll } from "@/components/reveal-on-scroll";
+import { SectionHeader } from "@/components/section-header";
 import { SkillBadge } from "@/components/skill-badge";
+import { experiments } from "@/data/experiments";
 import { posts } from "@/data/posts";
 import { profile } from "@/data/profile";
 import { projects } from "@/data/projects";
@@ -36,279 +46,358 @@ const overview = [
   { value: "MVP", label: "当前阶段", icon: Rocket },
 ];
 
-const practiceHighlights = [
+const currentStatus = [
+  { label: "Current Focus", value: "Web Development" },
+  { label: "Learning", value: "Data Structures & Algorithms" },
+  { label: "Building", value: "Portfolio / Algorithm Lab / AI Tools" },
+  { label: "Stage", value: "Freshman Year" },
+];
+
+const terminalLines = [
+  "$ whoami",
+  "Chase Chen · SCUT Software Engineering Freshman",
+  "$ current_focus",
+  "Web projects, algorithms, AI tools",
+  "$ goal",
+  "Turn ideas into usable products step by step",
+];
+
+const nowBuilding = [
   {
-    title: "前端组件",
-    description: "用清晰的卡片、按钮与标签组织内容，保持页面结构容易维护。",
-    icon: Code2,
+    title: "作品集迭代",
+    description:
+      "把个人介绍、项目记录、博客和实验室连接成清晰的成长档案。",
+    icon: Rocket,
+    accent: "MVP",
   },
   {
-    title: "学习记录",
-    description: "把项目进度、博客和实验室分开记录，让成长路径更容易被看见。",
-    icon: BookOpenText,
+    title: "算法实验室",
+    description:
+      "从排序、二分查找等基础主题开始，把抽象步骤拆成可观察的过程。",
+    icon: Workflow,
+    accent: "Planned",
   },
   {
-    title: "持续迭代",
-    description: "先完成轻量版本，再根据真实学习进度逐步补齐内容和细节。",
-    icon: Target,
+    title: "AI 工具探索",
+    description:
+      "围绕学习笔记、复习计划和内容整理，尝试小而实用的产品原型。",
+    icon: Cpu,
+    accent: "Concept",
   },
+];
+
+const featuredProjects = projects.filter((project) => project.featured);
+const labPreview = experiments.slice(0, 3);
+const signalItems = [
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Tailwind CSS",
+  "Algorithm Lab",
+  "AI Tools",
+  "Web Development",
+  "SCUT Freshman",
 ];
 
 export default function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-slate-200/80 bg-white/50">
+      <section className="relative overflow-hidden border-b border-white/10">
         <div className="hero-grid pointer-events-none absolute inset-0" />
-        <div className="pointer-events-none absolute -left-24 bottom-10 h-72 w-72 rounded-full bg-sky-100/70 blur-3xl" />
-        <div className="pointer-events-none absolute -right-24 top-14 h-80 w-80 rounded-full bg-blue-100/80 blur-3xl" />
-        <Container className="relative py-14 sm:py-20 lg:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_390px]">
-            <Reveal>
-              <p className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-sm font-medium text-brand-700 shadow-card">
+        <div className="pointer-events-none absolute left-1/2 top-0 h-80 w-[36rem] -translate-x-1/2 rounded-full bg-cyan-300/14 blur-3xl" />
+        <Container className="relative py-16 sm:py-20 lg:py-24">
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_420px]">
+            <RevealOnScroll>
+              <p className="inline-flex items-center gap-2 rounded-full border border-cyan-200/20 bg-white/[0.07] px-4 py-2 text-sm font-semibold text-cyan-100 shadow-card backdrop-blur">
                 <Sparkles className="h-4 w-4" />
-                软件工程学生 · 持续学习与实践
+                软件工程学生 · Web / Algorithm / AI Tools
               </p>
-              <h1 className="text-balance mt-7 max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-ink-950 sm:text-5xl lg:text-[3.45rem]">
-                学习工程基础，
-                <span className="bg-gradient-to-r from-brand-600 to-indigo-500 bg-clip-text text-transparent">
-                  把想法逐步做成项目
+              <h1 className="text-balance mt-7 max-w-4xl text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+                Chase Chen
+                <span className="text-gradient block">
+                  把想法快速做成可用产品
                 </span>
               </h1>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
+              <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
                 {profile.intro}
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Link
-                  href="/projects"
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-medium text-white shadow-card transition hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-lift"
-                >
+                <GradientButton href="/projects" icon={<Layers3 className="h-4 w-4" />}>
                   查看项目
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/blog"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-700 shadow-card transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-700"
+                </GradientButton>
+                <GradientButton
+                  href="/lab"
+                  variant="secondary"
+                  icon={<FlaskConical className="h-4 w-4" />}
                 >
-                  <BookOpenText className="h-4 w-4" />
+                  进入实验室
+                </GradientButton>
+                <GradientButton
+                  href="/blog"
+                  variant="secondary"
+                  icon={<BookOpenText className="h-4 w-4" />}
+                >
                   阅读博客
-                </Link>
+                </GradientButton>
+                <GradientButton
+                  href={profile.github}
+                  external
+                  variant="ghost"
+                  icon={<GitBranch className="h-4 w-4" />}
+                  ariaLabel="打开 Chase Chen 的 GitHub"
+                >
+                  GitHub
+                </GradientButton>
               </div>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <aside className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white/90 p-6 shadow-panel backdrop-blur sm:p-7">
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-500 via-indigo-400 to-sky-300" />
-                <div className="flex items-center justify-between gap-4 border-b border-slate-100 pb-5">
-                  <div>
-                    <p className="text-sm text-slate-500">{profile.name}</p>
-                    <p className="mt-1 font-semibold text-ink-950">
-                      {profile.role}
+              <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3">
+                {overview.map((item) => (
+                  <div
+                    key={item.label}
+                    className="border-l border-white/10 pl-4"
+                  >
+                    <item.icon className="mb-2 h-4 w-4 text-cyan-200" />
+                    <p className="text-xl font-semibold text-white">
+                      {item.value}
+                    </p>
+                    <p className="mt-1 text-xs text-slate-400">
+                      {item.label}
                     </p>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
-                    <GraduationCap className="h-3.5 w-3.5" />
-                    记录中
+                ))}
+              </div>
+            </RevealOnScroll>
+
+            <RevealOnScroll delay={0.12}>
+              <GlowCard className="motion-safe:animate-[float-slow_7s_ease-in-out_infinite] p-6">
+                <div className="mb-5 flex items-center justify-between gap-4 border-b border-white/10 pb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="h-2.5 w-2.5 rounded-full bg-pink-300" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-yellow-200" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
+                  </div>
+                  <span className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400">
+                    <Terminal className="h-3.5 w-3.5" />
+                    chase.dev
                   </span>
                 </div>
-                <dl className="mt-5 space-y-4">
-                  {profile.quickFacts.map((detail) => (
-                    <div
-                      key={detail.label}
-                      className="flex items-start justify-between gap-4 text-sm"
+                <div className="space-y-3 font-mono text-xs leading-6 text-slate-300 sm:text-sm">
+                  {terminalLines.map((line, index) => (
+                    <p
+                      key={`${line}-${index}`}
+                      className={index % 2 === 0 ? "text-cyan-200" : "text-slate-200"}
                     >
-                      <dt className="text-slate-500">{detail.label}</dt>
-                      <dd className="text-right font-medium text-slate-800">
-                        {detail.value}
+                      {line}
+                    </p>
+                  ))}
+                </div>
+                <dl className="mt-6 grid gap-4 border-t border-white/10 pt-5 sm:grid-cols-2">
+                  {currentStatus.map((item) => (
+                    <div key={item.label}>
+                      <dt className="text-xs font-semibold text-slate-500">
+                        {item.label}
+                      </dt>
+                      <dd className="mt-1 text-sm leading-6 text-slate-100">
+                        {item.value}
                       </dd>
                     </div>
                   ))}
                 </dl>
-                <div className="mt-6 grid grid-cols-3 gap-3 border-t border-slate-100 pt-5">
-                  {overview.map((item) => (
-                    <div
-                      key={item.label}
-                      className="rounded-xl border border-slate-100 bg-slate-50/80 p-3"
-                    >
-                      <item.icon className="mb-2 h-4 w-4 text-brand-600" />
-                      <p className="text-lg font-semibold text-ink-950">
-                        {item.value}
-                      </p>
-                      <p className="mt-1 text-xs text-slate-500">
-                        {item.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-5 rounded-xl border border-blue-100 bg-brand-50 p-4">
-                  <p className="inline-flex items-center gap-2 text-xs font-medium text-brand-700">
-                    <Target className="h-3.5 w-3.5" />
-                    当前建设重点
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-slate-700">
-                    通过前端页面、组件拆分和内容整理，持续打磨这个作品集。
-                  </p>
-                </div>
-              </aside>
-            </Reveal>
+              </GlowCard>
+            </RevealOnScroll>
           </div>
         </Container>
       </section>
 
-      <section className="py-10 sm:py-12">
+      <AnimatedTechMarquee items={signalItems} />
+
+      <section className="py-14 sm:py-18 lg:py-20">
         <Container>
-          <Reveal className="grid gap-4 md:grid-cols-3">
-            {practiceHighlights.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-card"
-              >
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-blue-100">
-                  <item.icon className="h-5 w-5" />
-                </span>
-                <h2 className="mt-4 font-semibold text-ink-950">
-                  {item.title}
-                </h2>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </Reveal>
+          <RevealOnScroll>
+            <SectionHeader
+              eyebrow="Now Building"
+              title="当前主线"
+              description="首页先让访问者快速理解我是谁，再通过项目、实验和学习记录看到持续动手的轨迹。"
+            />
+            <BentoGrid className="mt-9">
+              {nowBuilding.map((item, index) => (
+                <GlowCard
+                  key={item.title}
+                  interactive
+                  tone={index === 0 ? "cyan" : index === 1 ? "violet" : "emerald"}
+                  className="md:col-span-2"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.06] text-cyan-100">
+                      <item.icon className="h-5 w-5" />
+                    </span>
+                    <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-300">
+                      {item.accent}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-300">
+                    {item.description}
+                  </p>
+                </GlowCard>
+              ))}
+            </BentoGrid>
+          </RevealOnScroll>
         </Container>
       </section>
 
-      <section className="py-16 sm:py-20">
+      <section className="border-y border-white/10 bg-white/[0.025] py-14 sm:py-18 lg:py-20">
         <Container>
-          <Reveal>
+          <RevealOnScroll>
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-              <SectionHeading
-                eyebrow="项目实践"
+              <SectionHeader
+                eyebrow="Featured Projects"
                 title="精选项目"
-                description="从小而明确的目标开始，练习需求梳理、实现过程与项目复盘。"
+                description="项目卡片保留真实状态：已上线的给链接，尚未完成的只展示计划和学习重点。"
               />
               <Link
-                className="shrink-0 text-sm font-medium text-brand-600 transition hover:text-brand-700"
+                className="focus-ring inline-flex shrink-0 items-center gap-2 rounded-full px-1 text-sm font-semibold text-cyan-100 transition hover:text-white"
                 href="/projects"
               >
-                <span className="inline-flex items-center gap-1">
-                  查看全部项目
-                  <ArrowRight className="h-4 w-4" />
-                </span>
+                查看全部项目
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {projects
-                .filter((project) => project.featured)
-                .map((project) => (
-                  <ProjectCard key={project.title} project={project} />
-                ))}
+            <div className="mt-10 grid gap-4 lg:grid-cols-6">
+              {featuredProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  className={index === 0 ? "lg:col-span-6" : "lg:col-span-3"}
+                />
+              ))}
             </div>
-          </Reveal>
+          </RevealOnScroll>
         </Container>
       </section>
 
-      <section className="border-y border-slate-200 bg-white/60 py-16 sm:py-20">
+      <section className="py-14 sm:py-18 lg:py-20">
         <Container>
-          <Reveal>
+          <RevealOnScroll>
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-              <SectionHeading
-                eyebrow="学习记录"
-                title="最新博客"
-                description="记录搭建项目时的选择、遇到的问题，以及正在建立的学习方法。"
+              <SectionHeader
+                eyebrow="Algorithm & AI Lab"
+                title="让实验室成为学习的仪表盘"
+                description="实验室聚焦算法可视化、学习效率工具和 AI 辅助流程，展示下一步要验证的小实验。"
               />
               <Link
-                className="shrink-0 text-sm font-medium text-brand-600 transition hover:text-brand-700"
-                href="/blog"
+                className="focus-ring inline-flex shrink-0 items-center gap-2 rounded-full px-1 text-sm font-semibold text-cyan-100 transition hover:text-white"
+                href="/lab"
               >
-                <span className="inline-flex items-center gap-1">
-                  浏览文章
-                  <ArrowRight className="h-4 w-4" />
-                </span>
+                进入实验室
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-4 lg:grid-cols-3">
+              {labPreview.map((experiment) => (
+                <ExperimentCard
+                  key={experiment.title}
+                  experiment={experiment}
+                />
+              ))}
+            </div>
+          </RevealOnScroll>
+        </Container>
+      </section>
+
+      <section className="border-y border-white/10 bg-white/[0.025] py-14 sm:py-18 lg:py-20">
+        <Container>
+          <RevealOnScroll>
+            <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+              <SectionHeader
+                eyebrow="Learning Notes"
+                title="博客与学习记录"
+                description="博客区更克制一些，用来记录项目复盘、Web 开发实践和逐步形成的学习方法。"
+              />
+              <Link
+                className="focus-ring inline-flex shrink-0 items-center gap-2 rounded-full px-1 text-sm font-semibold text-cyan-100 transition hover:text-white"
+                href="/blog"
+              >
+                浏览文章
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {posts.map((post) => (
                 <PostCard key={post.title} post={post} />
               ))}
             </div>
-          </Reveal>
+          </RevealOnScroll>
         </Container>
       </section>
 
-      <section className="py-16 sm:py-20">
+      <section className="py-14 sm:py-18 lg:py-20">
         <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="技术栈"
+          <RevealOnScroll>
+            <SectionHeader
+              eyebrow="Tech Stack"
               title="目前使用与学习的工具"
-              description="我仍处于基础积累阶段。以下技术分别代表已经在项目中练习的内容，以及正在系统学习的方向。"
+              description="仍处于基础积累阶段，所以这里把项目中正在实践的技术和系统学习的方向分开呈现。"
             />
-            <div className="mt-10 grid gap-5 md:grid-cols-2">
+            <BentoGrid className="mt-9">
               {profile.skillGroups.map((group) => (
-                <div
-                  key={group.title}
-                  className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card"
-                >
-                  <p className="mb-5 text-sm font-medium text-slate-500">
-                    {group.title}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
+                <GlowCard key={group.title} className="md:col-span-3">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.06] text-cyan-100">
+                      <Code2 className="h-4 w-4" />
+                    </span>
+                    <h3 className="font-semibold text-white">{group.title}</h3>
+                  </div>
+                  <div className="mt-5 flex flex-wrap gap-2">
                     {group.skills.map((skill) => (
                       <SkillBadge key={skill} name={skill} />
                     ))}
                   </div>
-                </div>
+                </GlowCard>
               ))}
-            </div>
-          </Reveal>
+            </BentoGrid>
+          </RevealOnScroll>
         </Container>
       </section>
 
       <section className="pb-16 sm:pb-20">
         <Container>
-          <Reveal>
-            <div className="grid gap-6 lg:grid-cols-[1fr_0.72fr]">
-              <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-card sm:p-8">
-                <SectionHeading eyebrow="学习路径" title="正在逐步建立的方向" />
-                <div className="mt-8 grid gap-6 sm:grid-cols-3">
-                  {profile.learningPath.map((item, index) => (
-                    <div key={item.title}>
-                      <span className="text-sm font-semibold text-brand-600">
-                        0{index + 1}
-                      </span>
-                      <h3 className="mt-3 font-semibold text-ink-950">
-                        {item.title}
-                      </h3>
-                      <p className="mt-2 text-sm leading-6 text-slate-600">
-                        {item.description}
-                      </p>
-                    </div>
-                  ))}
+          <RevealOnScroll>
+            <GlowCard className="p-7 sm:p-8" tone="pink">
+              <div className="grid gap-8 lg:grid-cols-[1fr_0.75fr] lg:items-center">
+                <div>
+                  <p className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-100">
+                    <Target className="h-4 w-4" />
+                    下一步
+                  </p>
+                  <h2 className="text-balance mt-4 text-2xl font-semibold text-white sm:text-3xl">
+                    继续把真实学习过程沉淀成作品
+                  </h2>
+                  <p className="mt-4 max-w-2xl leading-7 text-slate-300">
+                    这个网站会随着项目、实验和学习笔记持续更新。最适合查看进度的入口是 GitHub，也可以从项目页看到每个作品的当前状态。
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3 lg:justify-end">
+                  <GradientButton
+                    href={profile.github}
+                    external
+                    icon={<GitBranch className="h-4 w-4" />}
+                    ariaLabel="打开 Chase Chen 的 GitHub"
+                  >
+                    前往 GitHub
+                  </GradientButton>
+                  <GradientButton
+                    href="/projects"
+                    variant="secondary"
+                    icon={<Lightbulb className="h-4 w-4" />}
+                  >
+                    查看项目路线
+                  </GradientButton>
                 </div>
               </div>
-              <div className="relative overflow-hidden rounded-2xl border border-blue-100 bg-brand-50 p-7 sm:p-8">
-                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white/70 blur-2xl" />
-                <p className="relative text-sm font-medium text-brand-700">
-                  联系方式
-                </p>
-                <h2 className="relative mt-4 text-2xl font-semibold tracking-tight text-ink-950">
-                  查看我的代码记录
-                </h2>
-                <p className="relative mt-4 text-sm leading-7 text-slate-600">
-                  目前可以通过 GitHub 了解这个网站和后续小项目的更新进度。
-                </p>
-                <a
-                  href={profile.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="relative mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-brand-700 shadow-card transition hover:-translate-y-0.5 hover:text-brand-600 hover:shadow-lift"
-                >
-                  <GitBranch className="h-4 w-4" />
-                  前往 GitHub
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-          </Reveal>
+            </GlowCard>
+          </RevealOnScroll>
         </Container>
       </section>
     </>

@@ -4,6 +4,7 @@ export type Experiment = {
   tags: string[];
   status: "构思中" | "即将开始" | "开发中";
   nextStep: string;
+  demoUrl?: string;
 };
 
 export const experiments: Experiment[] = [

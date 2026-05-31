@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import { GitBranch, Target } from "lucide-react";
 
 import { Container } from "@/components/container";
+import { GlowCard } from "@/components/glow-card";
 import { PageHero } from "@/components/page-hero";
+import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { SectionHeading } from "@/components/section-heading";
 import { SkillBadge } from "@/components/skill-badge";
 import { Tag } from "@/components/tag";
@@ -22,7 +25,7 @@ export default function AboutPage() {
       />
       <section className="py-14 sm:py-20">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-2">
+          <RevealOnScroll className="grid gap-8 lg:grid-cols-2">
             <div>
               <SectionHeading
                 eyebrow="当前学习方向"
@@ -35,63 +38,69 @@ export default function AboutPage() {
                 ))}
               </div>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-card">
-              <p className="text-sm font-medium text-brand-600">阶段目标</p>
+            <GlowCard className="p-7" tone="emerald">
+              <p className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-100">
+                <Target className="h-4 w-4" />
+                阶段目标
+              </p>
               <ul className="mt-6 space-y-5">
                 {profile.goals.map((goal, index) => (
-                  <li key={goal} className="flex gap-4 text-slate-700">
-                    <span className="text-sm font-semibold text-brand-600">
+                  <li key={goal} className="flex gap-4 text-slate-300">
+                    <span className="text-sm font-semibold text-cyan-200">
                       0{index + 1}
                     </span>
                     <span className="leading-7">{goal}</span>
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
+            </GlowCard>
+          </RevealOnScroll>
         </Container>
       </section>
-      <section className="border-y border-slate-200 bg-white/60 py-14 sm:py-20">
+      <section className="border-y border-white/10 bg-white/[0.025] py-14 sm:py-20">
         <Container>
-          <SectionHeading
-            eyebrow="技术栈"
-            title="使用中与学习中的技术"
-            description="这里区分正在项目中使用的工具和仍在学习的基础方向，随着实践积累持续更新。"
-          />
-          <div className="mt-9 grid gap-5 md:grid-cols-2">
-            {profile.skillGroups.map((group) => (
-              <div
-                key={group.title}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card"
-              >
-                <p className="mb-5 text-sm font-medium text-slate-500">
-                  {group.title}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
-                    <SkillBadge key={skill} name={skill} />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <RevealOnScroll>
+            <SectionHeading
+              eyebrow="技术栈"
+              title="使用中与学习中的技术"
+              description="这里区分正在项目中使用的工具和仍在学习的基础方向，随着实践积累持续更新。"
+            />
+            <div className="mt-9 grid gap-4 md:grid-cols-2">
+              {profile.skillGroups.map((group) => (
+                <GlowCard key={group.title} className="p-6">
+                  <p className="mb-5 text-sm font-semibold text-slate-400">
+                    {group.title}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {group.skills.map((skill) => (
+                      <SkillBadge key={skill} name={skill} />
+                    ))}
+                  </div>
+                </GlowCard>
+              ))}
+            </div>
+          </RevealOnScroll>
         </Container>
       </section>
       <section className="py-14 sm:py-20">
         <Container>
-          <SectionHeading
-            eyebrow="联系"
-            title="联系方式"
-            description="目前最适合了解我学习进度的地方是 GitHub。我会在那里更新这个网站和未来完成的小项目。"
-          />
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 inline-flex rounded-lg bg-brand-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-brand-700"
-          >
-            github.com/b1rd426
-          </a>
+          <RevealOnScroll>
+            <SectionHeading
+              eyebrow="联系"
+              title="联系方式"
+              description="目前最适合了解我学习进度的地方是 GitHub。我会在那里更新这个网站和未来完成的小项目。"
+            />
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="打开 Chase Chen 的 GitHub"
+              className="focus-ring mt-8 inline-flex items-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 shadow-neon transition hover:bg-cyan-200"
+            >
+              <GitBranch className="h-4 w-4" />
+              github.com/b1rd426
+            </a>
+          </RevealOnScroll>
         </Container>
       </section>
     </>

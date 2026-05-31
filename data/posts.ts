@@ -4,6 +4,7 @@ export type Post = {
   category: string;
   date: string;
   readTime: string;
+  status: "已发布" | "计划中";
   tags: string[];
 };
 
@@ -15,6 +16,7 @@ export const posts: Post[] = [
     category: "项目复盘",
     date: "2026.05",
     readTime: "5 分钟阅读",
+    status: "已发布",
     tags: ["Portfolio", "记录"],
   },
   {
@@ -24,6 +26,7 @@ export const posts: Post[] = [
     category: "Web 开发",
     date: "即将发布",
     readTime: "6 分钟阅读",
+    status: "计划中",
     tags: ["成长路径", "项目"],
   },
   {
@@ -33,6 +36,7 @@ export const posts: Post[] = [
     category: "Web 开发",
     date: "即将发布",
     readTime: "8 分钟阅读",
+    status: "计划中",
     tags: ["Next.js", "实践"],
   },
 ];
