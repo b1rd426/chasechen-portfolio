@@ -11,11 +11,11 @@ import { experiments } from "@/data/experiments";
 
 export const metadata: Metadata = {
   title: "实验室",
-  description: "Chase Chen 的小工具、技术 Demo 与探索性实验。",
+  description: "Chase Chen 的小工具、技术演示与探索性实验。",
 };
 
 export default function LabPage() {
-  const roadmap = ["想法拆解", "最小 Demo", "交互优化", "复盘记录"];
+  const roadmap = ["想法拆解", "最小演示", "交互优化", "复盘记录"];
 
   return (
     <>
@@ -31,7 +31,7 @@ export default function LabPage() {
               <GlowCard className="p-6" tone="violet">
                 <p className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-100">
                   <FlaskConical className="h-4 w-4" />
-                  Lab Focus
+                  实验重点
                 </p>
                 <h2 className="mt-4 text-2xl font-semibold text-white">
                   从小实验验证想法
@@ -42,7 +42,7 @@ export default function LabPage() {
               </GlowCard>
               <GlowCard className="p-6" tone="pink">
                 <SectionHeader
-                  eyebrow="Roadmap"
+                  eyebrow="推进路线"
                   title="实验推进节奏"
                   description="先把边界拆清楚，再做最小可演示版本，最后补交互与复盘。"
                 />

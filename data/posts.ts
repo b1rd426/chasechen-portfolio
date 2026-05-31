@@ -17,7 +17,7 @@ export const posts: Post[] = [
     date: "2026.05",
     readTime: "5 分钟阅读",
     status: "已发布",
-    tags: ["Portfolio", "记录"],
+    tags: ["作品集", "记录"],
   },
   {
     title: "大一软件工程学生应该如何建立作品集",

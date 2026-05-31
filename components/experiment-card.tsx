@@ -42,7 +42,7 @@ export function ExperimentCard({
             {experiment.nextStep}
           </p>
           <p className="mt-4 text-xs text-slate-500">
-            {experiment.demoUrl ? "Demo 已连接" : "Demo 待实现"}
+            {experiment.demoUrl ? "演示已连接" : "演示待实现"}
           </p>
         </div>
       </div>

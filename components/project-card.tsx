@@ -17,7 +17,7 @@ export function ProjectCard({
     <GlowCard
       as="article"
       interactive
-      tone={project.status === "MVP" ? "cyan" : "violet"}
+      tone={project.status === "首版可用" ? "cyan" : "violet"}
       className={cn("h-full p-6", className)}
     >
       <div className="flex h-full flex-col">
@@ -78,7 +78,7 @@ export function ProjectCard({
             </a>
           ) : (
             <span className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-slate-500">
-              Demo 待上线
+              演示待上线
             </span>
           )}
         </div>

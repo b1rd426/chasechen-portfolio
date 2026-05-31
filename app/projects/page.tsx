@@ -27,7 +27,7 @@ export default function ProjectsPage() {
             <GlowCard className="mb-10 p-5">
               <p className="flex items-center gap-3 text-sm leading-7 text-slate-300">
                 <Sparkles className="h-4 w-4 shrink-0 text-cyan-200" />
-                当前以课程基础和 Web 开发练习为主，项目状态会随实际进度更新；没有 Demo 的项目不会伪装成已上线。
+                当前以课程基础和 Web 开发练习为主，项目状态会随实际进度更新；没有演示链接的项目不会伪装成已上线。
               </p>
             </GlowCard>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

@@ -17,7 +17,7 @@ export const projects: Project[] = [
       "一个持续更新的技术成长主页，用于集中展示项目、技术文章、实验作品与学习方向。",
     stack: ["Next.js", "TypeScript", "Tailwind CSS"],
     category: "Web 开发",
-    status: "MVP",
+    status: "首版可用",
     featured: true,
     learningFocus: "组件拆分、响应式布局与部署流程",
     sourceUrl: "https://github.com/b1rd426/chasechen-portfolio",
@@ -27,7 +27,7 @@ export const projects: Project[] = [
     title: "算法可视化实验室",
     description:
       "通过动画解释排序、二分查找、递归与动态规划，让抽象过程变得直观可理解。",
-    stack: ["React", "TypeScript", "Visualization"],
+    stack: ["React", "TypeScript", "可视化"],
     category: "算法",
     status: "规划中",
     featured: true,

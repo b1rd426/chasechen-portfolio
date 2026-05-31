@@ -9,6 +9,7 @@ const statusStyles: Record<string, string> = {
   已完成: "border-emerald-300/30 bg-emerald-300/10 text-emerald-200",
   Done: "border-emerald-300/30 bg-emerald-300/10 text-emerald-200",
   MVP: "border-cyan-300/35 bg-cyan-300/10 text-cyan-100",
+  首版可用: "border-cyan-300/35 bg-cyan-300/10 text-cyan-100",
   可用版本: "border-cyan-300/35 bg-cyan-300/10 text-cyan-100",
   开发中: "border-blue-300/35 bg-blue-300/10 text-blue-100",
   Building: "border-blue-300/35 bg-blue-300/10 text-blue-100",
