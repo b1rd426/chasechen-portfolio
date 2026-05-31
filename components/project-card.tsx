@@ -1,4 +1,4 @@
-import { ArrowUpRight, Code2, GitBranch, Sparkles } from "lucide-react";
+import { ArrowUpRight, GitBranch, Layers3, Sparkles } from "lucide-react";
 
 import { GlowCard } from "@/components/glow-card";
 import { StatusBadge } from "@/components/status-badge";
@@ -23,7 +23,7 @@ export function ProjectCard({
       <div className="flex h-full flex-col">
         <div className="mb-5 flex items-center justify-between gap-4 text-xs">
           <span className="inline-flex items-center gap-2 font-semibold text-cyan-100">
-            <Code2 className="h-3.5 w-3.5" />
+            <Layers3 className="h-3.5 w-3.5" />
             {project.category}
           </span>
           <StatusBadge status={project.status} />

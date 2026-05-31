@@ -2,7 +2,6 @@ import {
   ArrowRight,
   BookOpenText,
   Brain,
-  Code2,
   Cpu,
   FlaskConical,
   GitBranch,
@@ -340,21 +339,27 @@ export default function HomePage() {
               description="仍处于基础积累阶段，所以这里把项目中正在实践的技术和系统学习的方向分开呈现。"
             />
             <BentoGrid className="mt-9">
-              {profile.skillGroups.map((group) => (
-                <GlowCard key={group.title} className="md:col-span-3">
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.06] text-cyan-100">
-                      <Code2 className="h-4 w-4" />
-                    </span>
-                    <h3 className="font-semibold text-white">{group.title}</h3>
-                  </div>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {group.skills.map((skill) => (
-                      <SkillBadge key={skill} name={skill} />
-                    ))}
-                  </div>
-                </GlowCard>
-              ))}
+              {profile.skillGroups.map((group) => {
+                const GroupIcon = group.title === "正在学习" ? Brain : Rocket;
+
+                return (
+                  <GlowCard key={group.title} className="md:col-span-3">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.06] text-cyan-100">
+                        <GroupIcon className="h-4 w-4" />
+                      </span>
+                      <h3 className="font-semibold text-white">
+                        {group.title}
+                      </h3>
+                    </div>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {group.skills.map((skill) => (
+                        <SkillBadge key={skill} name={skill} />
+                      ))}
+                    </div>
+                  </GlowCard>
+                );
+              })}
             </BentoGrid>
           </RevealOnScroll>
         </Container>
