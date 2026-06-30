@@ -11,6 +11,9 @@ import { projects } from "@/data/projects";
 export const metadata: Metadata = {
   title: "项目",
   description: "Chase Chen 的软件工程项目与持续构建记录。",
+  alternates: {
+    canonical: "/projects",
+  },
 };
 
 export default function ProjectsPage() {

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
 import { AuroraBackground } from "@/components/aurora-background";
@@ -16,15 +16,54 @@ export const metadata: Metadata = {
   },
   description:
     "Chase Chen 的个人技术作品集，展示项目、博客、技术实验和学习成长记录。",
+  keywords: [
+    "Chase Chen",
+    "软件工程",
+    "个人作品集",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "算法可视化",
+  ],
+  authors: [{ name: "Chase Chen", url: "https://www.chase0426.com" }],
+  creator: "Chase Chen",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-icon.svg", type: "image/svg+xml" }],
+  },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     title: "Chase Chen | Software Engineering Portfolio",
     description:
       "软件工程大一学生 Chase Chen 的项目、博客、实验室和学习成长记录。",
     url: "https://www.chase0426.com",
     siteName: "Chase Chen Portfolio",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Chase Chen Portfolio",
+      },
+    ],
     locale: "zh_CN",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chase Chen | Software Engineering Portfolio",
+    description:
+      "软件工程大一学生 Chase Chen 的项目、博客、实验室和学习成长记录。",
+    images: ["/opengraph-image"],
+  },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "dark",
+  themeColor: "#030712",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

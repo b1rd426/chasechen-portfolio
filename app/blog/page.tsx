@@ -12,6 +12,9 @@ import { postCategories, posts } from "@/data/posts";
 export const metadata: Metadata = {
   title: "博客",
   description: "关于 Web 开发、算法、AI 应用与项目复盘的文章记录。",
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default function BlogPage() {

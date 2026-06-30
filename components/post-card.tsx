@@ -1,4 +1,5 @@
-import { BookOpen, Clock3 } from "lucide-react";
+import { ArrowRight, BookOpen, Clock3 } from "lucide-react";
+import Link from "next/link";
 
 import { GlowCard } from "@/components/glow-card";
 import { StatusBadge } from "@/components/status-badge";
@@ -17,7 +18,13 @@ export function PostCard({ post }: { post: Post }) {
           <StatusBadge status={post.status} />
         </div>
         <h3 className="mt-5 text-lg font-semibold leading-7 text-white transition group-hover:text-cyan-100">
-          {post.title}
+          {post.slug ? (
+            <Link className="focus-ring rounded-sm" href={`/blog/${post.slug}`}>
+              {post.title}
+            </Link>
+          ) : (
+            post.title
+          )}
         </h3>
         <p className="mt-3 flex-1 text-sm leading-7 text-slate-300">
           {post.excerpt}
@@ -33,6 +40,16 @@ export function PostCard({ post }: { post: Post }) {
             <Clock3 className="h-3.5 w-3.5" />
             {post.readTime}
           </span>
+          {post.slug ? (
+            <Link
+              className="focus-ring ml-auto inline-flex items-center gap-1 rounded-full text-cyan-100 transition hover:text-white"
+              href={`/blog/${post.slug}`}
+              aria-label={`阅读 ${post.title}`}
+            >
+              阅读全文
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          ) : null}
         </div>
       </div>
     </GlowCard>

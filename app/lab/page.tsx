@@ -12,6 +12,9 @@ import { experiments } from "@/data/experiments";
 export const metadata: Metadata = {
   title: "实验室",
   description: "Chase Chen 的小工具、技术演示与探索性实验。",
+  alternates: {
+    canonical: "/lab",
+  },
 };
 
 export default function LabPage() {

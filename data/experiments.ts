@@ -2,7 +2,7 @@ export type Experiment = {
   title: string;
   description: string;
   tags: string[];
-  status: "构思中" | "即将开始" | "开发中";
+  status: "构思中" | "即将开始" | "开发中" | "首版可用";
   nextStep: string;
   demoUrl?: string;
 };
@@ -12,8 +12,9 @@ export const experiments: Experiment[] = [
     title: "排序算法可视化",
     description: "观察数组在不同排序算法中的实时变化过程。",
     tags: ["算法", "动画"],
-    status: "即将开始",
-    nextStep: "先实现冒泡排序与选择排序的步骤展示。",
+    status: "首版可用",
+    nextStep: "继续补充选择排序和更多算法对比。",
+    demoUrl: "/lab/sorting-visualizer",
   },
   {
     title: "GPA 计算器",

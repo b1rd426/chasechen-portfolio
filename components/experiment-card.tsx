@@ -1,4 +1,5 @@
-import { FlaskConical, ListChecks } from "lucide-react";
+import { ArrowUpRight, FlaskConical, ListChecks } from "lucide-react";
+import Link from "next/link";
 
 import { GlowCard } from "@/components/glow-card";
 import { StatusBadge } from "@/components/status-badge";
@@ -10,6 +11,8 @@ export function ExperimentCard({
 }: {
   experiment: Experiment;
 }) {
+  const demoLabel = experiment.demoUrl ? "打开演示" : "演示待实现";
+
   return (
     <GlowCard as="article" interactive tone="pink" className="h-full p-6">
       <div className="flex h-full flex-col">
@@ -41,9 +44,18 @@ export function ExperimentCard({
           <p className="mt-2 text-sm leading-6 text-slate-200">
             {experiment.nextStep}
           </p>
-          <p className="mt-4 text-xs text-slate-500">
-            {experiment.demoUrl ? "演示已连接" : "演示待实现"}
-          </p>
+          {experiment.demoUrl ? (
+            <Link
+              href={experiment.demoUrl}
+              className="focus-ring mt-4 inline-flex items-center gap-1.5 rounded-full text-xs font-semibold text-cyan-100 transition hover:text-white"
+              aria-label={`打开 ${experiment.title} 演示`}
+            >
+              {demoLabel}
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </Link>
+          ) : (
+            <p className="mt-4 text-xs text-slate-500">{demoLabel}</p>
+          )}
         </div>
       </div>
     </GlowCard>

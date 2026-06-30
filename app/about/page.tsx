@@ -13,6 +13,9 @@ import { profile } from "@/data/profile";
 export const metadata: Metadata = {
   title: "关于我",
   description: "了解 Chase Chen 的学习方向、技术栈与阶段目标。",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

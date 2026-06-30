@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   ArrowRight,
   BookOpenText,
@@ -30,6 +31,12 @@ import { experiments } from "@/data/experiments";
 import { posts } from "@/data/posts";
 import { profile } from "@/data/profile";
 import { projects } from "@/data/projects";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 const overview = [
   {
