@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Tags } from "lucide-react";
 
 import { Container } from "@/components/container";
@@ -8,11 +7,15 @@ import { PostCard } from "@/components/post-card";
 import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { Tag } from "@/components/tag";
 import { postCategories, posts } from "@/data/posts";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+const description = "关于 Web 开发、算法、AI 应用与项目复盘的文章记录。";
+
+export const metadata = createPageMetadata({
   title: "博客",
-  description: "关于 Web 开发、算法、AI 应用与项目复盘的文章记录。",
-};
+  description,
+  path: "/blog",
+});
 
 export default function BlogPage() {
   return (

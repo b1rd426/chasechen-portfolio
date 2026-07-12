@@ -8,9 +8,11 @@ export function CursorSpotlight() {
   useEffect(() => {
     const spotlight = spotlightRef.current;
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const desktopQuery = window.matchMedia("(min-width: 768px)");
+    const interactionQuery = window.matchMedia(
+      "(min-width: 768px) and (hover: hover) and (pointer: fine)",
+    );
 
-    if (!spotlight || motionQuery.matches || !desktopQuery.matches) {
+    if (!spotlight || motionQuery.matches || !interactionQuery.matches) {
       return;
     }
 
@@ -30,7 +32,7 @@ export function CursorSpotlight() {
       spotlight.style.opacity = "0";
     };
 
-    window.addEventListener("pointermove", moveSpotlight);
+    window.addEventListener("pointermove", moveSpotlight, { passive: true });
     window.addEventListener("pointerleave", hideSpotlight);
 
     return () => {
@@ -44,7 +46,7 @@ export function CursorSpotlight() {
     <div
       ref={spotlightRef}
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[5] hidden h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.2),rgba(168,85,247,0.08)_38%,transparent_70%)] opacity-0 blur-2xl transition-opacity duration-300 md:block"
+      className="pointer-events-none fixed left-0 top-0 z-[5] hidden h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.2),rgba(168,85,247,0.08)_38%,transparent_70%)] opacity-0 blur-2xl transition-opacity duration-300 will-change-transform md:block"
     />
   );
 }

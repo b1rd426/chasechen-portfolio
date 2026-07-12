@@ -7,7 +7,7 @@ import type { Post } from "@/data/posts";
 
 export function PostCard({ post }: { post: Post }) {
   return (
-    <GlowCard as="article" interactive tone="emerald" className="h-full p-6">
+    <GlowCard as="article" tone="emerald" className="h-full p-6">
       <div className="flex h-full flex-col">
         <div className="flex items-center justify-between gap-3 text-xs text-slate-400">
           <span className="inline-flex items-center gap-2 font-semibold text-cyan-100">
@@ -16,7 +16,7 @@ export function PostCard({ post }: { post: Post }) {
           </span>
           <StatusBadge status={post.status} />
         </div>
-        <h3 className="mt-5 text-lg font-semibold leading-7 text-white transition group-hover:text-cyan-100">
+        <h3 className="mt-5 text-lg font-semibold leading-7 text-white">
           {post.title}
         </h3>
         <p className="mt-3 flex-1 text-sm leading-7 text-slate-300">

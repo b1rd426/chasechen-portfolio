@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Sparkles } from "lucide-react";
 
 import { Container } from "@/components/container";
@@ -7,11 +6,15 @@ import { PageHero } from "@/components/page-hero";
 import { ProjectCard } from "@/components/project-card";
 import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { projects } from "@/data/projects";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+const description = "Chase Chen 的软件工程项目与持续构建记录。";
+
+export const metadata = createPageMetadata({
   title: "项目",
-  description: "Chase Chen 的软件工程项目与持续构建记录。",
-};
+  description,
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (
