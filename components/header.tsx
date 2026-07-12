@@ -3,7 +3,7 @@
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Container } from "@/components/container";
 
@@ -18,9 +18,30 @@ const navItems = [
 export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === href : pathname.startsWith(href);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/72 shadow-[0_1px_0_rgba(255,255,255,0.08)_inset] backdrop-blur-xl">
@@ -45,10 +66,12 @@ export function Header() {
           </span>
         </div>
         <button
+          ref={menuButtonRef}
           type="button"
           className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.07] text-slate-100 transition hover:border-cyan-200/30 md:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
+          aria-haspopup="true"
           aria-label={menuOpen ? "关闭导航菜单" : "打开导航菜单"}
           onClick={() => setMenuOpen((open) => !open)}
         >
