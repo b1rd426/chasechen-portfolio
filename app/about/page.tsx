@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { GitBranch, Target } from "lucide-react";
 
 import { Container } from "@/components/container";
@@ -9,11 +8,15 @@ import { SectionHeading } from "@/components/section-heading";
 import { SkillBadge } from "@/components/skill-badge";
 import { Tag } from "@/components/tag";
 import { profile } from "@/data/profile";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+const description = "了解 Chase Chen 的学习方向、技术栈与阶段目标。";
+
+export const metadata = createPageMetadata({
   title: "关于我",
-  description: "了解 Chase Chen 的学习方向、技术栈与阶段目标。",
-};
+  description,
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
