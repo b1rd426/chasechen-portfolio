@@ -20,6 +20,7 @@ Chase Chen 的个人技术作品集网站。作为一名软件工程大一学生
 - `/projects`：已完成及规划中的项目
 - `/blog`：博客文章索引
 - `/lab`：小工具与技术实验记录
+- `/lab/sorting`：可操作的冒泡、选择与插入排序可视化
 - `/about`：学习方向、技术栈与阶段目标
 
 ## 本地运行
@@ -38,7 +39,10 @@ npm run dev
 ```bash
 npm run build
 npm run typecheck
+npm test
 ```
+
+排序算法测试覆盖空数组、单元素、重复元素、逆序数组与输入不可变性。
 
 ## 添加内容
 
