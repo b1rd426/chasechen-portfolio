@@ -14,9 +14,9 @@ export const posts: Post[] = [
     excerpt:
       "从零开始积累真实作品、学习记录与工程实践，让成长被清晰地看见。",
     category: "项目复盘",
-    date: "2026.05",
-    readTime: "5 分钟阅读",
-    status: "已发布",
+    date: "正文待补",
+    readTime: "预计 5 分钟",
+    status: "计划中",
     tags: ["作品集", "记录"],
   },
   {
