@@ -25,7 +25,7 @@ export default function LabPage() {
       <PageHero
         eyebrow="实验室"
         title="把小想法变成动手练习"
-        description="实验室用于记录计划中的小工具与技术尝试。目标不是堆积功能，而是用清楚的小实验练习实现能力。"
+        description="实验室用于展示可直接体验的小工具与仍在规划的技术尝试。每个实验都保留真实状态，用清楚的小项目练习实现能力。"
       />
       <section className="py-14 sm:py-20">
         <Container>
