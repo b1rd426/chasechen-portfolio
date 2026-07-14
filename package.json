@@ -10,15 +10,15 @@
     "test": "node --import tsx --test lib/*.test.ts"
   },
   "dependencies": {
-    "lucide-react": "^1.17.0",
-    "motion": "^12.40.0",
-    "next": "^15.5.7",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "lucide-react": "^1.24.0",
+    "motion": "^12.42.2",
+    "next": "^16.2.10",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
-    "@types/react": "^19.0.0",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
