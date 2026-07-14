@@ -69,9 +69,9 @@ const nowBuilding = [
   {
     title: "算法实验室",
     description:
-      "从排序、二分查找等基础主题开始，把抽象步骤拆成可观察的过程。",
+      "排序可视化首版已经可用，可逐步观察比较、交换与有序区变化。",
     icon: Workflow,
-    accent: "规划中",
+    accent: "首版可用",
   },
   {
     title: "AI 工具探索",

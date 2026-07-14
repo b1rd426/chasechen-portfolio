@@ -24,14 +24,17 @@ export const projects: Project[] = [
     demoUrl: "https://www.chase0426.com",
   },
   {
-    title: "算法可视化实验室",
+    title: "排序算法可视化实验室",
     description:
-      "通过动画解释排序、二分查找、递归与动态规划，让抽象过程变得直观可理解。",
-    stack: ["React", "TypeScript", "可视化"],
+      "可操作的排序实验，支持自定义数组、三种算法、单步播放、速度控制与过程统计。",
+    stack: ["React", "TypeScript", "Node.js Test Runner"],
     category: "算法",
-    status: "规划中",
+    status: "首版可用",
     featured: true,
-    learningFocus: "算法步骤建模与可视化表达",
+    learningFocus: "算法步骤建模、状态可视化与边界测试",
+    sourceUrl:
+      "https://github.com/b1rd426/chasechen-portfolio/pull/8/files",
+    demoUrl: "/lab/sorting",
   },
   {
     title: "AI 学习助手工具",
