@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight, FlaskConical, ListChecks } from "lucide-react";
 
 import { GlowCard } from "@/components/glow-card";
@@ -53,16 +54,16 @@ export function ExperimentCard({
             {experiment.nextStep}
           </p>
           {experiment.demoUrl ? (
-            <a
+            <Link
               href={experiment.demoUrl}
-              target="_blank"
+              target={experiment.demoUrl.startsWith("/") ? undefined : "_blank"}
               rel="noreferrer"
               aria-label={`打开 ${experiment.title} 的在线演示`}
               className="focus-ring mt-4 inline-flex items-center gap-1.5 rounded-full bg-cyan-300 px-3 py-1.5 text-xs font-semibold text-slate-950 shadow-neon transition hover:bg-cyan-200"
             >
               打开演示
               <ArrowUpRight className="h-3.5 w-3.5" />
-            </a>
+            </Link>
           ) : (
             <p className="mt-4 text-xs text-slate-400">演示待实现</p>
           )}

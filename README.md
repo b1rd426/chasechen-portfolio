@@ -18,14 +18,16 @@ Chase Chen 的个人技术作品集网站。作为一名软件工程大一学生
 
 - `/`：个人简介、精选项目、学习记录与联系方式
 - `/projects`：已完成及规划中的项目
-- `/blog`：博客文章索引
+- `/blog`：博客文章索引与正文详情页
 - `/lab`：小工具与技术实验记录
 - `/lab/sorting`：可操作的冒泡、选择与插入排序可视化
+- `/projects/university-physics`：原创交互物理演示
 - `/about`：学习方向、技术栈与阶段目标
+- `/robots.txt`、`/sitemap.xml`：搜索引擎抓取入口
 
 ## 本地运行
 
-需要 Node.js 18.18 或更高版本。
+需要 Node.js 22.18 或更高版本（CI 使用 Node.js 22）。
 
 ```bash
 npm install
@@ -33,6 +35,7 @@ npm run dev
 ```
 
 访问 [http://localhost:3000](http://localhost:3000) 查看本地站点。
+`dev` 脚本启用了 Watchpack polling，用于避免 macOS 图形环境文件监听上限导致的 `EMFILE` 问题。
 
 构建检查：
 
@@ -54,11 +57,11 @@ npm test
 
 ### 添加博客
 
-在 `data/posts.ts` 的 `posts` 数组中添加文章卡片信息，包括标题、摘要、分类、日期、阅读时间和标签。当前版本展示文章索引，后续可逐步补充正文页面。
+在 `data/posts.ts` 的 `posts` 数组中添加文章卡片信息，包括标题、摘要、分类、日期、阅读时间和标签。发布正文时补充 `slug` 与 `sections`，页面会生成 `/blog/[slug]` 详情页。
 
 ### 添加实验室内容
 
-在 `data/experiments.ts` 的 `experiments` 数组中添加实验信息，包括说明、技术标签、当前状态和下一步计划。
+在 `data/experiments.ts` 的 `experiments` 数组中添加实验信息，包括说明、技术标签、当前状态、下一步计划和可选 `demoUrl`。已有演示会在卡片上显示入口。
 
 ## 部署
 
@@ -67,5 +70,14 @@ npm test
 ## 后续计划
 
 - 持续补充真实完成的项目与学习复盘
-- 为博客逐步增加可阅读的正文内容
+- 为更多博客逐步增加可阅读的正文内容
 - 将实验室中的规划条目按实际进度实现并更新状态
+
+## 庭院首页
+
+首页使用本地 Three.js 场景与滚动镜头，支持暂停、减少动态偏好和无 WebGL
+时的静态降级。场景资产采用 ThreeUI Community 的 MIT 许可，来源与性能
+策略见 [lib/garden/README.md](lib/garden/README.md)。
+
+物理项目仅包含原创公开模型、说明和图形；教材、试卷、个人作答及私有笔记
+不属于此仓库。

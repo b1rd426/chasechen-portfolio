@@ -4,9 +4,9 @@
 
 :root {
   color-scheme: dark;
-  --background: #030712;
-  --surface: #08111f;
-  --surface-strong: #0c1728;
+  --background: #080b0d;
+  --surface: #101617;
+  --surface-strong: #151b1c;
   --border: rgba(255, 255, 255, 0.11);
   --text-main: #f8fafc;
   --text-muted: #cbd5e1;
@@ -31,7 +31,7 @@ body {
 }
 
 ::selection {
-  background: rgba(34, 211, 238, 0.22);
+  background: rgba(176, 61, 59, 0.4);
   color: #ffffff;
 }
 

@@ -27,3 +27,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# private physics sources (public demos live in app/components/lib)
+/physics-vault/
+/physics-private/
+/.physics-node_modules-backup/

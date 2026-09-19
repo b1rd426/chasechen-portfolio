@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight, GitBranch, Layers3, Sparkles } from "lucide-react";
 
 import { GlowCard } from "@/components/glow-card";
@@ -67,7 +68,9 @@ export function ProjectCard({
               源码待整理
             </span>
           )}
-          {project.demoUrl ? (
+          {project.detailUrl ? (
+            <Link href={project.detailUrl} className="focus-ring inline-flex items-center gap-1.5 rounded-full bg-cyan-300 px-3 py-1.5 font-semibold text-slate-950">进入项目 <ArrowUpRight className="h-3.5 w-3.5" /></Link>
+          ) : project.demoUrl ? (
             <a
               href={project.demoUrl}
               target="_blank"

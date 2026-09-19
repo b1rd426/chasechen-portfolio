@@ -22,6 +22,16 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   outputFileTracingRoot: projectRoot,
+  webpack: (config, { dev }) => {
+    if (dev) {
+      config.watchOptions = {
+        ...config.watchOptions,
+        ignored: ["**/.git/**", "**/.next/**", "**/node_modules/**"],
+      };
+    }
+
+    return config;
+  },
   async headers() {
     return [
       {

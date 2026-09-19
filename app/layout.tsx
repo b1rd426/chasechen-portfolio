@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
-import { AuroraBackground } from "@/components/aurora-background";
-import { CursorSpotlight } from "@/components/cursor-spotlight";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 
 import "./globals.css";
+import "./garden.css";
 
 const siteTitle = "Chase Chen | Software Engineering Portfolio";
 const siteDescription =
@@ -77,19 +76,14 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = { colorScheme: "dark", themeColor: "#080b0d" };
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="zh-CN">
       <body className="bg-canvas text-slate-100 antialiased">
-        <a
-          href="#main-content"
-          className="focus-ring fixed left-4 top-4 z-[100] -translate-y-24 rounded-lg bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950 shadow-neon transition focus:translate-y-0"
-        >
-          跳到主要内容
-        </a>
-        <AuroraBackground />
-        <CursorSpotlight />
-        <div className="relative z-10 flex min-h-screen flex-col">
+        <a href="#main-content" className="skip-link">跳到正文</a>
+        <div className="site-shell relative flex min-h-screen flex-col">
           <Header />
           <main id="main-content" tabIndex={-1} className="flex-1">
             {children}

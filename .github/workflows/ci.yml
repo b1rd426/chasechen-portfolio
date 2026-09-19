@@ -35,6 +35,11 @@ jobs:
       - name: Run TypeScript checks
         run: npm run typecheck
 
+      - name: Test sorting and physics models
+        run: |
+          npm test
+          npm run test:physics
+
       - name: Build production bundle
         shell: bash
         run: |

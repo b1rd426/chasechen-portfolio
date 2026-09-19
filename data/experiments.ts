@@ -2,7 +2,7 @@ export type Experiment = {
   title: string;
   description: string;
   tags: string[];
-  status: "构思中" | "即将开始" | "开发中" | "可用版本";
+  status: "构思中" | "即将开始" | "开发中" | "可用版本" | "首版可用";
   nextStep: string;
   demoUrl?: string;
 };
@@ -37,4 +37,5 @@ export const experiments: Experiment[] = [
     status: "构思中",
     nextStep: "尝试把课程笔记转换为清晰的目录结构。",
   },
+  {title:"大学物理学习动画演示",description:"进入按章节组织的物理项目，探索微元积分和高斯定理。",tags:["物理","交互教学"],status:"首版可用",nextStep:"按教材顺序扩展后续章节。",demoUrl:"/projects/university-physics"},
 ];
