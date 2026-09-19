@@ -14,10 +14,12 @@ export function ProjectCard({
   project: Project;
   className?: string;
 }) {
+  const hasLinks = Boolean(project.sourceUrl || project.demoUrl);
+
   return (
     <GlowCard
       as="article"
-      interactive
+      interactive={hasLinks}
       tone={project.status === "首版可用" ? "cyan" : "violet"}
       className={cn("h-full p-6", className)}
     >
@@ -62,7 +64,7 @@ export function ProjectCard({
               GitHub 源码
             </a>
           ) : (
-            <span className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-slate-500">
+            <span className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-slate-400">
               源码待整理
             </span>
           )}
@@ -80,7 +82,7 @@ export function ProjectCard({
               <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
           ) : (
-            <span className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-slate-500">
+            <span className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-slate-400">
               演示待上线
             </span>
           )}

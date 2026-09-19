@@ -7,63 +7,76 @@ import { Header } from "@/components/header";
 import "./globals.css";
 import "./garden.css";
 
+const siteTitle = "Chase Chen | Software Engineering Portfolio";
+const siteDescription =
+  "华南理工大学软件工程学生 Chase Chen 的个人技术作品集，记录 Web 开发、算法实验、项目复盘与学习成长。";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.chase0426.com"),
+  applicationName: "Chase Chen Portfolio",
   title: {
-    default: "Chase Chen | Software Engineering Portfolio",
+    default: siteTitle,
     template: "%s | Chase Chen",
   },
-  description:
-    "Chase Chen 的个人技术作品集，展示项目、博客、技术实验和学习成长记录。",
+  description: siteDescription,
   keywords: [
     "Chase Chen",
     "软件工程",
+    "华南理工大学",
     "个人作品集",
+    "Web 开发",
+    "数据结构与算法",
     "Next.js",
-    "React",
     "TypeScript",
-    "算法可视化",
   ],
-  authors: [{ name: "Chase Chen", url: "https://www.chase0426.com" }],
+  authors: [{ name: "Chase Chen", url: "/about" }],
   creator: "Chase Chen",
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    apple: [{ url: "/apple-icon.svg", type: "image/svg+xml" }],
+  publisher: "Chase Chen",
+  category: "technology",
+  alternates: {
+    canonical: "/",
   },
-  manifest: "/manifest.webmanifest",
+  formatDetection: {
+    address: false,
+    email: false,
+    telephone: false,
+  },
   openGraph: {
-    title: "Chase Chen | Software Engineering Portfolio",
-    description:
-      "软件工程大一学生 Chase Chen 的项目、博客、实验室和学习成长记录。",
-    url: "https://www.chase0426.com",
+    title: siteTitle,
+    description: siteDescription,
+    url: "/",
     siteName: "Chase Chen Portfolio",
+    locale: "zh_CN",
+    type: "website",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Chase Chen Portfolio",
+        alt: "Chase Chen 软件工程作品集",
       },
     ],
-    locale: "zh_CN",
-    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chase Chen | Software Engineering Portfolio",
-    description:
-      "软件工程大一学生 Chase Chen 的项目、博客、实验室和学习成长记录。",
+    title: siteTitle,
+    description: siteDescription,
     images: ["/opengraph-image"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
-export const viewport: Viewport = {
-  colorScheme: "dark",
-  themeColor: "#080b0d",
-};
+export const viewport: Viewport = { colorScheme: "dark", themeColor: "#080b0d" };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -72,7 +85,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <a href="#main-content" className="skip-link">跳到正文</a>
         <div className="site-shell relative flex min-h-screen flex-col">
           <Header />
-          <main id="main-content" tabIndex={-1} className="flex-1">{children}</main>
+          <main id="main-content" tabIndex={-1} className="flex-1">
+            {children}
+          </main>
           <Footer />
         </div>
       </body>

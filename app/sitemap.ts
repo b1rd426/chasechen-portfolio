@@ -5,7 +5,6 @@ import { physicsRoutes } from "@/data/physics";
 import { posts } from "@/data/posts";
 
 const baseUrl = "https://www.chase0426.com";
-const lastModified = new Date("2026-06-30");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = ["", "/projects", "/blog", "/lab", "/about"];
@@ -18,7 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return Array.from(new Set([...staticRoutes, ...blogRoutes, ...labRoutes, ...physicsRoutes])).map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified,
     changeFrequency: route === "" ? "weekly" : "monthly",
     priority: route === "" ? 1 : 0.7,
   }));

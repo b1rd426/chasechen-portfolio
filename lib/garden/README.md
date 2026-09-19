@@ -50,3 +50,19 @@ Research references (implemented locally; no external runtime requests):
 
 The DOM choreography uses native Web Animations and IntersectionObserver;
 no additional animation dependency was needed for this refinement.
+
+## Scroll performance
+
+Viewport and chapter geometry are cached on resize. Scroll handlers use those
+measurements without mixing layout reads with style writes. The scene host
+avoids duplicate canvas resizes and caps decorative rendering at 60 Hz on high
+refresh displays, while native document scrolling remains unrestricted.
+
+The WebGL buffer has a 1.8-million-pixel desktop budget (700,000 on coarse
+pointers). Bloom uses quarter-resolution buffers with three levels on desktop
+and two on mobile; the HDR target does not use MSAA. The header uses an opaque
+surface instead of repeatedly blurring a changing WebGL backdrop. Adaptive
+resolution allocations wait for scrolling to stop and have a cooldown; canvas
+resizes do not invalidate the static shadow map.
+
+Reference: [Chrome guidance on batching layout reads and writes](https://web.dev/articles/avoid-large-complex-layouts-and-layout-thrashing).

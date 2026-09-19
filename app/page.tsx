@@ -17,7 +17,7 @@ const work = [
   {
     number: "02", title: "算法实验室", english: "MAKE THE INVISIBLE VISIBLE",
     description: "从排序开始，让抽象的步骤变得可以观察。",
-    image: "kage-lantern-court.webp", href: "/lab/sorting-visualizer", label: "算法 · 排序演示可用",
+    image: "kage-lantern-court.webp", href: "/lab/sorting", label: "算法 · 排序演示可用",
     className: "",
   },
   {

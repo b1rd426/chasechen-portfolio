@@ -8,7 +8,7 @@ import type { Post } from "@/data/posts";
 
 export function PostCard({ post }: { post: Post }) {
   return (
-    <GlowCard as="article" interactive tone="emerald" className="h-full p-6">
+    <GlowCard as="article" tone="emerald" className="h-full p-6">
       <div className="flex h-full flex-col">
         <div className="flex items-center justify-between gap-3 text-xs text-slate-400">
           <span className="inline-flex items-center gap-2 font-semibold text-cyan-100">

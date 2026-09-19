@@ -1,5 +1,5 @@
-import { ArrowUpRight, FlaskConical, ListChecks } from "lucide-react";
 import Link from "next/link";
+import { ArrowUpRight, FlaskConical, ListChecks } from "lucide-react";
 
 import { GlowCard } from "@/components/glow-card";
 import { StatusBadge } from "@/components/status-badge";
@@ -11,17 +11,26 @@ export function ExperimentCard({
 }: {
   experiment: Experiment;
 }) {
-  const demoLabel = experiment.demoUrl ? "打开演示" : "演示待实现";
+  const hasDemo = Boolean(experiment.demoUrl);
 
   return (
-    <GlowCard as="article" interactive tone="pink" className="h-full p-6">
+    <GlowCard
+      as="article"
+      interactive={hasDemo}
+      tone="pink"
+      className="h-full p-6"
+    >
       <div className="flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
           <div className="flex gap-3">
             <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-violet-200/20 bg-violet-300/10 text-violet-100">
               <FlaskConical className="h-4 w-4" />
             </span>
-            <h3 className="text-lg font-semibold text-white transition group-hover:text-cyan-100">
+            <h3
+              className={`text-lg font-semibold text-white ${
+                hasDemo ? "transition group-hover:text-cyan-100" : ""
+              }`}
+            >
               {experiment.title}
             </h3>
           </div>
@@ -47,14 +56,16 @@ export function ExperimentCard({
           {experiment.demoUrl ? (
             <Link
               href={experiment.demoUrl}
-              className="focus-ring mt-4 inline-flex items-center gap-1.5 rounded-full text-xs font-semibold text-cyan-100 transition hover:text-white"
-              aria-label={`打开 ${experiment.title} 演示`}
+              target={experiment.demoUrl.startsWith("/") ? undefined : "_blank"}
+              rel="noreferrer"
+              aria-label={`打开 ${experiment.title} 的在线演示`}
+              className="focus-ring mt-4 inline-flex items-center gap-1.5 rounded-full bg-cyan-300 px-3 py-1.5 text-xs font-semibold text-slate-950 shadow-neon transition hover:bg-cyan-200"
             >
-              {demoLabel}
+              打开演示
               <ArrowUpRight className="h-3.5 w-3.5" />
             </Link>
           ) : (
-            <p className="mt-4 text-xs text-slate-500">{demoLabel}</p>
+            <p className="mt-4 text-xs text-slate-400">演示待实现</p>
           )}
         </div>
       </div>

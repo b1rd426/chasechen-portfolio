@@ -1,98 +1,95 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Chase Chen Portfolio";
+export const alt = "Chase Chen 软件工程作品集";
+
 export const size = {
   width: 1200,
   height: 630,
 };
+
 export const contentType = "image/png";
 
-export default function Image() {
+export default function OpenGraphImage() {
   return new ImageResponse(
     (
       <div
         style={{
-          alignItems: "center",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: "72px 80px",
           backgroundColor: "#030712",
           backgroundImage:
-            "radial-gradient(circle at 18% 20%, rgba(34, 211, 238, 0.35), transparent 30%), radial-gradient(circle at 82% 28%, rgba(168, 85, 247, 0.32), transparent 28%)",
+            "radial-gradient(circle at 18% 12%, rgba(34,211,238,0.34), transparent 34%), radial-gradient(circle at 88% 22%, rgba(168,85,247,0.3), transparent 36%)",
           color: "#f8fafc",
-          display: "flex",
           fontFamily: "Arial, sans-serif",
-          height: "100%",
-          justifyContent: "center",
-          padding: 72,
-          width: "100%",
         }}
       >
         <div
           style={{
-            border: "1px solid rgba(255, 255, 255, 0.14)",
-            borderRadius: 28,
             display: "flex",
-            flexDirection: "column",
-            gap: 28,
-            height: "100%",
-            justifyContent: "space-between",
-            padding: 54,
-            width: "100%",
+            alignItems: "center",
+            gap: 20,
+            color: "#a5f3fc",
+            fontSize: 28,
+            fontWeight: 700,
           }}
         >
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div
-              style={{
-                alignItems: "center",
-                background: "linear-gradient(135deg, #67e8f9, #818cf8)",
-                borderRadius: 18,
-                color: "#020617",
-                display: "flex",
-                fontSize: 30,
-                fontWeight: 800,
-                height: 72,
-                justifyContent: "center",
-                width: 72,
-              }}
-            >
-              CC
-            </div>
-            <div
-              style={{
-                color: "#a5f3fc",
-                fontSize: 28,
-                fontWeight: 700,
-              }}
-            >
-              Software Engineering Portfolio
-            </div>
+          <div
+            style={{
+              width: 64,
+              height: 64,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 16,
+              background:
+                "linear-gradient(135deg, #67e8f9 0%, #60a5fa 52%, #c084fc 100%)",
+              color: "#030712",
+              fontSize: 24,
+              fontWeight: 800,
+            }}
+          >
+            CC
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-            <div style={{ fontSize: 82, fontWeight: 800, letterSpacing: 0 }}>
-              Chase Chen
-            </div>
-            <div
-              style={{
-                color: "#bae6fd",
-                fontSize: 56,
-                fontWeight: 800,
-                lineHeight: 1.12,
-              }}
-            >
-              把想法快速做成可用产品
-            </div>
-            <div
-              style={{
-                color: "#cbd5e1",
-                fontSize: 30,
-                lineHeight: 1.45,
-                maxWidth: 900,
-              }}
-            >
-              Web 开发 · 算法实验 · AI 工具探索 · 华南理工大学软件工程
-            </div>
+          Chase Chen · Software Engineering Portfolio
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <div
+            style={{
+              maxWidth: 980,
+              fontSize: 68,
+              lineHeight: 1.12,
+              fontWeight: 800,
+              letterSpacing: "-0.04em",
+            }}
+          >
+            把想法逐步做成清晰、可用、能复盘的小产品
           </div>
-          <div style={{ color: "#94a3b8", fontSize: 24 }}>
-            chase0426.com
+          <div
+            style={{
+              color: "#cbd5e1",
+              fontSize: 28,
+              lineHeight: 1.5,
+            }}
+          >
+            Web 开发 · 数据结构与算法 · 项目复盘 · AI 工具探索
           </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            color: "#94a3b8",
+            fontSize: 24,
+          }}
+        >
+          <span>华南理工大学软件工程学生</span>
+          <span>chase0426.com</span>
         </div>
       </div>
     ),

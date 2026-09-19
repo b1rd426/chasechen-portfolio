@@ -42,19 +42,34 @@ export function GardenScene() {
 
   useEffect(() => {
     const elements = chapters.map(({ id }) => document.getElementById(id));
+    let tops: number[] = [];
     let pending = 0;
     const update = () => {
       pending = 0;
       let current = 0;
-      elements.forEach((element, index) => {
-        if (element && element.getBoundingClientRect().top <= innerHeight * 0.48) current = index;
+      const threshold = scrollY + innerHeight * 0.48;
+      tops.forEach((top, index) => {
+        if (top <= threshold) current = index;
       });
       setActive(current);
     };
+    const measure = () => {
+      const y = scrollY;
+      tops = elements.map((element) => element ? element.getBoundingClientRect().top + y : Infinity);
+      update();
+    };
     const onScroll = () => { if (!pending) pending = requestAnimationFrame(update); };
+    const observer = new ResizeObserver(measure);
+    observer.observe(document.body);
     window.addEventListener("scroll", onScroll, { passive: true });
-    update();
-    return () => { cancelAnimationFrame(pending); window.removeEventListener("scroll", onScroll); };
+    window.addEventListener("resize", measure);
+    measure();
+    return () => {
+      cancelAnimationFrame(pending);
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", measure);
+    };
   }, []);
 
   useEffect(() => {
@@ -65,6 +80,9 @@ export function GardenScene() {
     let frame = 0;
     let observer: ResizeObserver | undefined;
     let anchors: number[] = [];
+    let width = 0;
+    let height = 0;
+    let lastFrameTime = 0;
 
     const measure = () => {
       const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
@@ -72,10 +90,15 @@ export function GardenScene() {
         const el = document.getElementById(id);
         if (!el || index === 0) return 0;
         if (index === chapters.length - 1) return max;
-        return Math.min(max, Math.max(0, el.offsetTop + el.offsetHeight / 2 - innerHeight / 2));
+        return Math.min(max, Math.max(0, el.getBoundingClientRect().top + scrollY + el.offsetHeight / 2 - innerHeight / 2));
       });
       for (let i = 1; i < anchors.length; i++) anchors[i] = Math.max(anchors[i], anchors[i - 1] + 1);
-      renderer?.resize();
+      const nextWidth = canvas.clientWidth;
+      const nextHeight = canvas.clientHeight;
+      if (width !== nextWidth || height !== nextHeight) {
+        width = nextWidth; height = nextHeight;
+        renderer?.resize();
+      }
       schedule();
     };
     const progress = () => {
@@ -87,6 +110,10 @@ export function GardenScene() {
     const render = (time: number) => {
       frame = 0;
       if (!renderer || disposed || document.hidden) return;
+      // Keep native scrolling at the display's refresh rate; the decorative
+      // WebGL scene does not need to consume 120/144 frames each second.
+      if (enabledRef.current && time - lastFrameTime < 1000 / 60 - 1) { schedule(); return; }
+      lastFrameTime = time;
       renderer.setProgress(progress());
       renderer.render(time, enabledRef.current);
       if (enabledRef.current) schedule();

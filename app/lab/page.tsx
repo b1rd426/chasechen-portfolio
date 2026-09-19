@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { FlaskConical, Route } from "lucide-react";
 
 import { Container } from "@/components/container";
@@ -8,14 +7,15 @@ import { PageHero } from "@/components/page-hero";
 import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { SectionHeader } from "@/components/section-header";
 import { experiments } from "@/data/experiments";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+const description = "Chase Chen 的小工具、技术演示与探索性实验。";
+
+export const metadata = createPageMetadata({
   title: "实验室",
-  description: "Chase Chen 的小工具、技术演示与探索性实验。",
-  alternates: {
-    canonical: "/lab",
-  },
-};
+  description,
+  path: "/lab",
+});
 
 export default function LabPage() {
   const roadmap = ["想法拆解", "最小演示", "交互优化", "复盘记录"];
@@ -25,7 +25,7 @@ export default function LabPage() {
       <PageHero
         eyebrow="实验室"
         title="把小想法变成动手练习"
-        description="实验室用于记录计划中的小工具与技术尝试。目标不是堆积功能，而是用清楚的小实验练习实现能力。"
+        description="实验室用于展示可直接体验的小工具与仍在规划的技术尝试。每个实验都保留真实状态，用清楚的小项目练习实现能力。"
       />
       <section className="py-14 sm:py-20">
         <Container>
@@ -53,7 +53,7 @@ export default function LabPage() {
                   {roadmap.map((step, index) => (
                     <div key={step} className="border-l border-white/10 pl-4">
                       <Route className="mb-3 h-4 w-4 text-cyan-200" />
-                      <p className="text-xs font-semibold text-slate-500">
+                      <p className="text-xs font-semibold text-slate-400">
                         0{index + 1}
                       </p>
                       <p className="mt-1 text-sm font-semibold text-slate-100">

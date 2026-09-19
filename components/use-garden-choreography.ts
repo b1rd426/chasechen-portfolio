@@ -30,20 +30,32 @@ export function useGardenChoreography(enabled: boolean) {
 
     // Only decoration moves with scrolling; text retains a stable reading baseline.
     const layers = Array.from(root.querySelectorAll<HTMLElement>("[data-parallax]"));
+    let bounds: { layer: HTMLElement; top: number; height: number; speed: number }[] = [];
     const cards = Array.from(root.querySelectorAll<HTMLElement>(".garden-work-card"));
     let frame = 0;
     const updateLayers = () => {
       frame = 0;
       if (document.hidden) return;
-      for (const layer of layers) {
-        const section = layer.closest("section");
-        if (!section) continue;
-        const box = section.getBoundingClientRect();
-        if (box.bottom < -100 || box.top > innerHeight + 100) continue;
-        const distance = innerHeight / 2 - box.top - box.height / 2;
-        const offset = Math.max(-52, Math.min(52, distance * Number(layer.dataset.parallax)));
+      const y = scrollY;
+      const viewportHeight = innerHeight;
+      for (const { layer, top, height, speed } of bounds) {
+        if (top + height < y - 100 || top > y + viewportHeight + 100) continue;
+        const distance = y + viewportHeight / 2 - top - height / 2;
+        const offset = Math.max(-52, Math.min(52, distance * speed));
         layer.style.setProperty("--travel", `${offset.toFixed(2)}px`);
       }
+    };
+    const measure = () => {
+      const y = scrollY;
+      // Batch layout reads on actual size changes, never interleave reads and
+      // style writes in the scroll loop.
+      bounds = layers.flatMap((layer) => {
+        const section = layer.closest("section");
+        if (!section) return [];
+        const box = section.getBoundingClientRect();
+        return [{ layer, top: box.top + y, height: box.height, speed: Number(layer.dataset.parallax) }];
+      });
+      onScroll();
     };
     const onScroll = () => { if (!frame) frame = requestAnimationFrame(updateLayers); };
     const pointer = (event: PointerEvent) => {
@@ -72,15 +84,18 @@ export function useGardenChoreography(enabled: boolean) {
       }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", measure);
+    const observer = new ResizeObserver(measure);
+    observer.observe(root);
     root.addEventListener("pointermove", pointer, { passive: true });
     root.addEventListener("focusin", onFocus);
     cards.forEach((card) => card.addEventListener("pointerleave", resetCard));
-    updateLayers();
+    measure();
 
     return () => {
       delete root.dataset.motion;
       reveal.disconnect();
+      observer.disconnect();
       cancelAnimationFrame(frame);
       animations.forEach((animation) => animation.cancel());
       layers.forEach((layer) => layer.style.removeProperty("--travel"));
@@ -89,7 +104,7 @@ export function useGardenChoreography(enabled: boolean) {
         ["--image-x", "--image-y", "--light-x", "--light-y"].forEach((name) => card.style.removeProperty(name));
       });
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", measure);
       root.removeEventListener("pointermove", pointer);
       root.removeEventListener("focusin", onFocus);
     };
