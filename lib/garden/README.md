@@ -38,7 +38,7 @@ not an embedded external page. Project, journal, lab and physics routes are kept
   server HTML. Pausing or enabling reduced motion removes these enhancements;
   observers/listeners/animations are cleaned up on navigation.
 - The red seal is replaced by a typographic wordmark. Larger body copy, a
-  consistent serif heading scale, warm neutral accents and a quieter signature
+  consistent serif heading scale, warm neutral accents and reduced decorative copy
   rebalance the layout. The motion control no longer overlaps the scroll link.
 
 Research references (implemented locally; no external runtime requests):
@@ -66,3 +66,14 @@ resolution allocations wait for scrolling to stop and have a cooldown; canvas
 resizes do not invalidate the static shadow map.
 
 Reference: [Chrome guidance on batching layout reads and writes](https://web.dev/articles/avoid-large-complex-layouts-and-layout-thrashing).
+
+## Editorial and material refinement
+
+- Remove the duplicate oversized hero signature, give the introduction a clear
+  reading area, and lower the hall in the portrait camera composition.
+- Reduce lunar albedo contrast and warm the tint. A shared paper-light texture
+  and wider shoji lattice preserve window detail at the existing pixel budget.
+- Replace scenery-only work covers with local HTML/SVG project illustrations.
+  Their subtle pointer response follows the same pause and reduced-motion state.
+- Unify project, journal, about, lab and experiment surfaces without changing
+  simulation logic, chapter routes or the rendering/bloom budgets.

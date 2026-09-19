@@ -18,13 +18,13 @@ export function SectionHeader({
   return (
     <div
       className={cn(
-        "max-w-2xl",
+        "garden-section-header max-w-2xl",
         align === "center" && "mx-auto text-center",
         className,
       )}
     >
       {eyebrow ? (
-        <p className="mb-3 text-sm font-semibold text-cyan-200">{eyebrow}</p>
+        <p className="mb-3 text-sm font-semibold text-[#bda789]">{eyebrow}</p>
       ) : null}
       <h2 className="text-balance text-2xl font-semibold text-white sm:text-3xl">
         {title}

@@ -1,80 +1,88 @@
-import { FlaskConical, Route } from "lucide-react";
-
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/container";
-import { ExperimentCard } from "@/components/experiment-card";
-import { GlowCard } from "@/components/glow-card";
 import { PageHero } from "@/components/page-hero";
-import { RevealOnScroll } from "@/components/reveal-on-scroll";
-import { SectionHeader } from "@/components/section-header";
+import { ProjectPreview } from "@/components/project-preview";
+import { StatusBadge } from "@/components/status-badge";
 import { experiments } from "@/data/experiments";
 import { createPageMetadata } from "@/lib/metadata";
-
-const description = "Chase Chen 的小工具、技术演示与探索性实验。";
-
 export const metadata = createPageMetadata({
   title: "实验室",
-  description,
+  description: "Chase Chen 的小工具、技术演示与探索性实验。",
   path: "/lab",
 });
-
 export default function LabPage() {
-  const roadmap = ["想法拆解", "最小演示", "交互优化", "复盘记录"];
-
   return (
-    <>
+    <div className="editorial-page">
       <PageHero
-        eyebrow="实验室"
-        title="把小想法变成动手练习"
-        description="实验室用于展示可直接体验的小工具与仍在规划的技术尝试。每个实验都保留真实状态，用清楚的小项目练习实现能力。"
+        eyebrow="实验室 / SMALL EXPERIMENTS"
+        title="让好奇心，有一个着落。"
+        description="拖动一个参数，观察一次变化。从可以亲手操作的小实验里，理解背后的原理。"
       />
-      <section className="py-14 sm:py-20">
+      <section className="editorial-section">
         <Container>
-          <RevealOnScroll>
-            <div className="mb-10 grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
-              <GlowCard className="p-6" tone="violet">
-                <p className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-100">
-                  <FlaskConical className="h-4 w-4" />
-                  实验重点
-                </p>
-                <h2 className="mt-4 text-2xl font-semibold text-white">
-                  从小实验验证想法
-                </h2>
-                <p className="mt-4 text-sm leading-7 text-slate-300">
-                  这里优先记录算法可视化、Web 小工具和 AI 学习助手方向。每个实验都保留真实状态和下一步，不把规划中的内容包装成已完成。
-                </p>
-              </GlowCard>
-              <GlowCard className="p-6" tone="pink">
-                <SectionHeader
-                  eyebrow="推进路线"
-                  title="实验推进节奏"
-                  description="先把边界拆清楚，再做最小可演示版本，最后补交互与复盘。"
-                />
-                <div className="mt-6 grid gap-4 sm:grid-cols-4">
-                  {roadmap.map((step, index) => (
-                    <div key={step} className="border-l border-white/10 pl-4">
-                      <Route className="mb-3 h-4 w-4 text-cyan-200" />
-                      <p className="text-xs font-semibold text-slate-400">
-                        0{index + 1}
-                      </p>
-                      <p className="mt-1 text-sm font-semibold text-slate-100">
-                        {step}
-                      </p>
+          <div className="editorial-section-heading">
+            <h2>动手试一试</h2>
+            <span>交互实验</span>
+          </div>
+          <div className="editorial-lab-grid">
+            {experiments
+              .filter((item) => item.demoUrl)
+              .map((item) => (
+                <article className="editorial-project" key={item.title}>
+                  <Link
+                    href={item.demoUrl!}
+                    className="project-preview-link focus-ring"
+                    aria-label={`体验${item.title}`}
+                  >
+                    <ProjectPreview
+                      kind={
+                        item.demoUrl === "/lab/sorting" ? "sorting" : "physics"
+                      }
+                    />
+                    <ArrowUpRight size={20} />
+                  </Link>
+                  <div className="editorial-project-body">
+                    <div className="editorial-meta">
+                      <span>{item.tags[0]}</span>
+                      <StatusBadge status={item.status} />
                     </div>
-                  ))}
-                </div>
-              </GlowCard>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {experiments.map((experiment) => (
-                <ExperimentCard
-                  key={experiment.title}
-                  experiment={experiment}
-                />
+                    <h2>
+                      <Link href={item.demoUrl!}>{item.title}</Link>
+                    </h2>
+                    <p>{item.description}</p>
+                    <Link href={item.demoUrl!} className="garden-text-link">
+                      开始探索 <ArrowUpRight size={16} />
+                    </Link>
+                    <details className="editorial-detail">
+                      <summary>下一步计划</summary>
+                      <p>{item.nextStep}</p>
+                    </details>
+                  </div>
+                </article>
               ))}
-            </div>
-          </RevealOnScroll>
+          </div>
+          <div className="editorial-planned">
+            <h2>想法簿</h2>
+            {experiments
+              .filter((item) => !item.demoUrl)
+              .map((item) => (
+                <article key={item.title}>
+                  <div>
+                    <StatusBadge status={item.status} />
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                    <details className="editorial-detail">
+                      <summary>下一步计划</summary>
+                      <p>{item.nextStep}</p>
+                    </details>
+                  </div>
+                  <span>{item.tags.join(" / ")}</span>
+                </article>
+              ))}
+          </div>
         </Container>
       </section>
-    </>
+    </div>
   );
 }

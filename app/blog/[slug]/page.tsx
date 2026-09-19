@@ -4,9 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Container } from "@/components/container";
-import { GlowCard } from "@/components/glow-card";
 import { PageHero } from "@/components/page-hero";
-import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { Tag } from "@/components/tag";
 import { posts } from "@/data/posts";
 
@@ -74,30 +72,30 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <>
+    <div className="editorial-page">
       <PageHero
         eyebrow={post.category}
         title={post.title}
         description={post.excerpt}
       />
       <section className="py-14 sm:py-20">
-        <Container>
-          <RevealOnScroll>
+        <Container className="editorial-reading">
+          <div>
             <Link
               href="/blog"
-              className="focus-ring mb-8 inline-flex items-center gap-2 rounded-full text-sm font-semibold text-cyan-100 transition hover:text-white"
+              className="focus-ring mb-8 inline-flex items-center gap-2 rounded-full text-sm font-semibold text-[#d5bc98] transition hover:text-white"
             >
               <ArrowLeft className="h-4 w-4" />
               返回博客
             </Link>
-            <GlowCard as="article" className="p-6 sm:p-8">
+            <article className="editorial-article">
               <div className="flex flex-wrap items-center gap-3 border-b border-white/10 pb-6 text-sm text-slate-400">
                 <span className="inline-flex items-center gap-2">
-                  <CalendarDays className="h-4 w-4 text-cyan-200" />
+                  <CalendarDays className="h-4 w-4 text-[#b6a58b]" />
                   {post.date}
                 </span>
                 <span className="inline-flex items-center gap-2">
-                  <Clock3 className="h-4 w-4 text-cyan-200" />
+                  <Clock3 className="h-4 w-4 text-[#b6a58b]" />
                   {post.readTime}
                 </span>
                 <div className="flex flex-wrap gap-2">
@@ -121,10 +119,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </section>
                 ))}
               </div>
-            </GlowCard>
-          </RevealOnScroll>
+            </article>
+          </div>
         </Container>
       </section>
-    </>
+    </div>
   );
 }

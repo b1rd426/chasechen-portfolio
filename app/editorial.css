@@ -1,0 +1,823 @@
+/* Shared typography and quiet surfaces connect the garden to its inner pages. */
+:root {
+  --garden-serif: "Songti SC", "STSong", "Noto Serif CJK SC", Georgia, serif;
+  --garden-paper: #e8e4d9;
+  --garden-gold: #c5ae8e;
+}
+.garden-panel {
+  position: relative;
+  border: 1px solid var(--garden-line);
+  background: #101615;
+  padding: 24px;
+  border-radius: 3px;
+}
+.garden-panel-interactive {
+  transition: border-color 0.25s;
+}
+.garden-panel-interactive:hover {
+  border-color: #827660;
+}
+.garden-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: #a5aba1;
+  white-space: nowrap;
+  font-weight: 400;
+}
+.garden-status i {
+  width: 5px;
+  height: 5px;
+  border: 1px solid #929789;
+  border-radius: 50%;
+}
+.garden-status-available {
+  color: #b9c6b3;
+}
+.garden-status-available i {
+  background: #a3b292;
+  border-color: #a3b292;
+}
+.garden-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--garden-line);
+  border-radius: 2px;
+  font-size: 12px;
+  color: #b5bcae;
+}
+.garden-section-header h2 {
+  font-family: var(--garden-serif);
+  font-weight: 400;
+  color: var(--garden-paper);
+}
+.focus-ring:focus-visible {
+  --tw-ring-color: #c5ae8e;
+}
+.garden-page-hero {
+  padding: 86px var(--garden-pad) 68px;
+  background:
+    linear-gradient(
+      90deg,
+      #0a100f 24%,
+      rgba(10, 16, 15, 0.83) 66%,
+      rgba(10, 16, 15, 0.54)
+    ),
+    url("/garden/kage-lantern-court.webp") 92% 43% / cover;
+}
+.garden-page-hero > div {
+  max-width: 1088px;
+}
+.garden-page-hero .garden-eyebrow {
+  color: #bda88a;
+  font-size: 11px;
+  letter-spacing: 0.17em;
+}
+.garden-page-hero h1 {
+  font-family: var(--garden-serif);
+  font-size: clamp(32px, 3.4vw, 50px);
+  font-weight: 400;
+  line-height: 1.5;
+  text-wrap: balance;
+  max-width: 860px;
+  margin-top: 26px;
+}
+.garden-page-hero > div > p:last-child {
+  max-width: 640px;
+  color: #b1baad;
+  line-height: 2;
+  margin-top: 22px;
+}
+.editorial-page {
+  color: var(--garden-paper);
+  background: #0b1110;
+}
+.editorial-section {
+  padding: 64px 0 100px;
+}
+.editorial-section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.editorial-section-heading h2 {
+  font-family: var(--garden-serif);
+  font-size: 25px;
+  font-weight: 400;
+}
+.editorial-section-heading > span {
+  color: #9fa99b;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.editorial-project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+.editorial-lab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px;
+}
+.editorial-project {
+  min-width: 0;
+}
+.project-preview-link {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--garden-line);
+  border-radius: 2px;
+}
+.project-preview-link > svg {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  color: #b9c3b3;
+  transition: transform 0.3s;
+}
+.project-preview-link:hover > svg {
+  transform: translate(2px, -2px);
+}
+.project-preview {
+  position: relative;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16/10;
+  color: #d6decf;
+  background: #131d19;
+}
+.project-preview-sorting {
+  background: radial-gradient(ellipse at 50% 90%, #263026, #111a17 85%);
+}
+.project-preview-physics {
+  background: radial-gradient(ellipse at 50% 50%, #27342e, #131c1a 80%);
+}
+.project-preview > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.project-preview-portfolio {
+  padding: 0 8%;
+  background: #202622;
+}
+.preview-browser {
+  width: 100%;
+  border: 1px solid #5a62534d;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 16px 35px #03080466;
+  transform: rotate(-3deg);
+  transition: transform 0.6s;
+}
+.preview-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 9px;
+  background: #19201b;
+}
+.preview-browser-bar i {
+  width: 3px;
+  height: 3px;
+  background: #6a7566;
+  border-radius: 50%;
+}
+.preview-browser-bar span {
+  flex: 1;
+  font-family: Georgia, serif;
+  text-align: center;
+  font-size: 7px;
+  letter-spacing: 0.04em;
+  color: #99a28f;
+  padding-right: 15px;
+}
+.preview-portfolio {
+  position: relative;
+  aspect-ratio: 1.8;
+  padding: 0;
+  background:
+    linear-gradient(90deg, #07100be0, #08100b12),
+    url("/garden/kage-approach.webp") 60% 53% / cover;
+}
+.preview-portfolio > span {
+  position: absolute;
+  top: 9%;
+  left: 7%;
+  font-family: Georgia, serif;
+  font-size: 12px;
+}
+.preview-portfolio p {
+  position: absolute;
+  top: 31%;
+  left: 7%;
+  margin: 0;
+  font-family: var(--garden-serif);
+  font-size: clamp(12px, 1.25vw, 21px);
+  line-height: 1.6;
+}
+.preview-portfolio small {
+  position: absolute;
+  bottom: 12%;
+  left: 7%;
+  display: block;
+  font-size: 7px;
+  margin-top: 18px;
+  color: #c0c7b6;
+}
+.project-preview-link:hover .preview-browser {
+  transform: rotate(-1deg) translateY(-3px);
+}
+.editorial-project-body {
+  padding: 25px 0 0;
+}
+.editorial-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #b5a38b;
+  font-size: 11px;
+}
+.editorial-project h2 {
+  font-family: var(--garden-serif);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.6;
+  margin-top: 16px;
+}
+.editorial-project h2 a:hover {
+  color: #dfc4a0;
+}
+.editorial-project-body > p {
+  color: #acb6aa;
+  font-size: 13px;
+  line-height: 2;
+  margin-top: 12px;
+}
+.editorial-project-body > .editorial-stack {
+  font-size: 10px;
+  color: #9da99a;
+  margin-top: 20px;
+}
+.editorial-project-foot {
+  display: flex;
+  align-items: baseline;
+  gap: 25px;
+  margin-top: 18px;
+}
+.editorial-source {
+  font-size: 11px;
+  color: #b0b8a8;
+}
+.editorial-source:hover {
+  color: #ddc4a2;
+}
+.editorial-detail {
+  margin-top: 18px;
+  font-size: 12px;
+  color: #9faa9a;
+}
+.editorial-detail summary {
+  cursor: pointer;
+  width: fit-content;
+  padding: 5px 0;
+}
+.editorial-detail p {
+  margin-top: 8px;
+  line-height: 1.9;
+  color: #b8c1b2;
+}
+.editorial-planned {
+  border-top: 1px solid var(--garden-line);
+  margin-top: 72px;
+  padding-top: 35px;
+}
+.editorial-planned > h2 {
+  font-family: var(--garden-serif);
+  font-size: 26px;
+  margin-bottom: 28px;
+}
+.editorial-planned article {
+  display: flex;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 25px 0;
+  border-bottom: 1px solid var(--garden-line);
+}
+.editorial-planned h3 {
+  font-family: var(--garden-serif);
+  font-size: 21px;
+  margin-top: 12px;
+}
+.editorial-planned p {
+  font-size: 13px;
+  line-height: 2;
+  color: #a4b09f;
+  margin-top: 9px;
+}
+.editorial-planned article > span {
+  color: #97a392;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.editorial-post {
+  display: grid;
+  grid-template-columns: 175px 1fr;
+  gap: 46px;
+  padding: 35px 0;
+  border-top: 1px solid var(--garden-line);
+}
+.editorial-post-date {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 7px;
+  font-size: 12px;
+  color: #a9b29e;
+}
+.editorial-post-date span:first-child {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  color: #cfb99a;
+}
+.editorial-post h2 {
+  text-wrap: balance;
+  font-family: var(--garden-serif);
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.editorial-post-published {
+  padding: 40px 0 45px;
+}
+.editorial-post-published h2 {
+  font-size: clamp(26px, 2.8vw, 37px);
+}
+.editorial-post h2 a:hover {
+  color: #dcc09c;
+}
+.editorial-post p {
+  margin-top: 15px;
+  color: #b2bbab;
+  font-size: 14px;
+  line-height: 2;
+  max-width: 670px;
+}
+.editorial-post-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+.editorial-post-foot > span {
+  font-size: 11px;
+  color: #97a28f;
+}
+.editorial-upcoming {
+  margin-top: 60px;
+}
+.editorial-upcoming .editorial-section-heading > h2 {
+  font-size: 22px;
+  color: #b5bdaa;
+}
+.editorial-upcoming .editorial-post h2 {
+  color: #c3c9b8;
+}
+.editorial-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12%;
+}
+.editorial-about-grid h2 {
+  font-family: var(--garden-serif);
+  font-size: clamp(30px, 3vw, 42px);
+  line-height: 1.7;
+  margin: 22px 0;
+}
+.editorial-about-grid > div > p:not(.garden-eyebrow) {
+  font-size: 14px;
+  line-height: 2.1;
+  color: #b3bdac;
+}
+.editorial-focuses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-top: 30px;
+  font-size: 12px;
+  color: #b4a88f;
+}
+.editorial-goals > div {
+  display: flex;
+  gap: 24px;
+  align-items: baseline;
+  border-bottom: 1px solid var(--garden-line);
+  padding: 25px 0;
+}
+.editorial-goals > div > span {
+  font-family: Georgia, serif;
+  color: #baa789;
+  font-size: 14px;
+}
+.editorial-goals > div > p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #c2cabc;
+}
+.editorial-skills {
+  margin-top: 80px;
+  padding-top: 35px;
+  border-top: 1px solid var(--garden-line);
+}
+.editorial-skills > div:not(.editorial-section-heading) {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 30px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--garden-line);
+}
+.editorial-skills h3 {
+  color: #adb69f;
+  font-size: 13px;
+}
+.editorial-skills p {
+  color: #c7cebd;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.editorial-contact {
+  margin-top: 80px;
+}
+.editorial-contact h2 {
+  font-family: var(--garden-serif);
+  font-size: 30px;
+}
+.editorial-contact p {
+  font-size: 14px;
+  color: #afb8a5;
+  margin: 18px 0;
+}
+.editorial-reading {
+  max-width: 850px;
+}
+.editorial-article {
+  border-top: 1px solid var(--garden-line);
+  padding-top: 30px;
+}
+.editorial-article h2 {
+  font-family: var(--garden-serif);
+  font-weight: 400;
+  color: var(--garden-paper);
+  line-height: 1.7;
+}
+.editorial-article p {
+  color: #c0c7b9;
+  line-height: 2.1;
+}
+/* The opening gives typography its own quiet part of the scene. */
+.garden-arrival {
+  min-height: 680px;
+}
+.garden-hero-intro {
+  margin-top: clamp(80px, 12vh, 150px);
+}
+.garden-hero-intro h1 {
+  font-size: clamp(42px, 4.4vw, 68px);
+}
+.garden-hero-meta {
+  font-size: 11px;
+  color: #adb6a7;
+}
+.garden-hero-bottom {
+  padding-right: 160px;
+}
+.garden-edition {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+.garden-desktop-nav a {
+  font-size: 13px;
+}
+.garden-world-shade {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 9, 10, 0.84),
+      rgba(5, 9, 10, 0.44) 38%,
+      transparent 70%
+    ),
+    linear-gradient(0deg, rgba(5, 9, 10, 0.68), transparent 42%);
+}
+.garden-about {
+  min-height: 740px;
+}
+.garden-work {
+  min-height: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 22, 18, 0.96),
+    rgba(17, 26, 21, 0.97)
+  );
+}
+.garden-maple {
+  z-index: 1;
+}
+.garden-work-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto;
+  gap: 24px;
+}
+.garden-work-card {
+  display: flex;
+  flex-direction: column;
+  background: #0d1511;
+}
+.garden-work-card:after {
+  display: none;
+}
+.garden-work-main {
+  grid-row: auto;
+}
+.garden-work-card .project-preview {
+  aspect-ratio: 1.45;
+}
+.garden-work-card .project-preview-portfolio {
+  padding: 24px 8% 0;
+}
+.garden-home[data-motion="on"] .garden-work-card .project-preview > svg {
+  transform: translate3d(var(--image-x, 0px), var(--image-y, 0px), 0);
+  transition: transform .7s cubic-bezier(.22,1,.36,1);
+}
+.garden-home[data-motion="on"] .garden-work-card .preview-browser {
+  transform: translate3d(var(--image-x, 0px), var(--image-y, 0px), 0) rotate(-3deg);
+}
+.garden-card-number {
+  top: 18px;
+  left: 22px;
+  font-size: 11px;
+  color: #b4baa8;
+}
+.garden-card-arrow {
+  width: 30px;
+  height: 30px;
+  top: 15px;
+  right: 17px;
+  border: 0;
+}
+.garden-card-arrow svg {
+  width: 18px;
+}
+.garden-work-card:hover .garden-card-arrow {
+  transform: translate(2px, -2px);
+  background: transparent;
+}
+.garden-card-copy,
+.garden-work-main .garden-card-copy {
+  position: relative;
+  inset: auto;
+  padding: 26px 26px 30px;
+  border-top: 1px solid var(--garden-line);
+}
+.garden-card-copy h3,
+.garden-work-main h3 {
+  font-size: 27px;
+  margin-top: 12px;
+}
+.garden-card-copy > span {
+  font-size: 11px;
+  color: #b7a98e;
+  letter-spacing: 0.04em;
+}
+.garden-card-copy p {
+  font-size: 13px;
+  color: #b6c0af;
+}
+.garden-journal {
+  min-height: 700px;
+}
+.garden-contact {
+  min-height: 750px;
+}
+.garden-contact-end {
+  margin-top: 80px;
+}
+.garden-contact .garden-section-label {
+  margin-bottom: 55px;
+}
+@media (min-width: 1700px) {
+  .garden-arrival {
+    min-height: 800px;
+  }
+}
+@media (max-width: 1100px) {
+  .editorial-project-grid {
+    gap: 22px;
+  }
+  .editorial-project h2 {
+    font-size: 22px;
+  }
+  .garden-work-grid {
+    gap: 16px;
+  }
+  .garden-card-copy,
+  .garden-work-main .garden-card-copy {
+    padding: 22px 20px 26px;
+  }
+  .garden-card-copy h3,
+  .garden-work-main h3 {
+    font-size: 24px;
+  }
+  .preview-portfolio p {
+    font-size: 13px;
+    margin-top: 0;
+  }
+  .preview-portfolio small {
+    margin-top: 12px;
+  }
+}
+@media (max-width: 767px) {
+  .garden-page-hero {
+    padding: 55px 24px 45px;
+    background-position: 75% 43%;
+  }
+  .garden-page-hero h1 {
+    font-size: 31px;
+    line-height: 1.65;
+    margin-top: 22px;
+  }
+  .garden-page-hero > div > p:last-child {
+    font-size: 14px;
+  }
+  .garden-page-hero .garden-eyebrow {
+    font-size: 10px;
+  }
+  .editorial-section {
+    padding: 40px 0 64px;
+  }
+  .editorial-section-heading {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .editorial-section-heading h2 {
+    font-size: 23px;
+  }
+  .editorial-section-heading > span {
+    font-size: 10px;
+  }
+  .editorial-project-grid,
+  .editorial-lab-grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+  .editorial-project h2 {
+    font-size: 26px;
+  }
+  .editorial-project-body > p {
+    font-size: 14px;
+  }
+  .editorial-planned {
+    margin-top: 50px;
+  }
+  .editorial-planned article {
+    display: block;
+  }
+  .editorial-planned article > span {
+    display: block;
+    margin-top: 16px;
+  }
+  .editorial-post {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 25px 0;
+  }
+  .editorial-post-date {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 18px;
+  }
+  .editorial-post-published h2 {
+    font-size: 28px;
+  }
+  .editorial-post h2 {
+    line-height: 1.7;
+  }
+  .editorial-upcoming {
+    margin-top: 40px;
+  }
+  .editorial-about-grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+  .editorial-skills,
+  .editorial-contact {
+    margin-top: 50px;
+  }
+  .editorial-skills > div:not(.editorial-section-heading) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .editorial-contact h2 {
+    font-size: 27px;
+  }
+  .garden-arrival {
+    min-height: 710px;
+    padding-top: 25px;
+  }
+  .garden-hero-meta {
+    font-size: 10px;
+  }
+  .garden-hero-meta > span:last-child {
+    display: block;
+  }
+  .garden-hero-intro {
+    margin-top: 48px;
+  }
+  .garden-hero-intro h1 {
+    font-size: clamp(32px, 8.9vw, 46px);
+    margin-top: 20px;
+    line-height: 1.5;
+  }
+  .garden-hero-intro > p:not(.garden-eyebrow) {
+    font-size: 14px;
+    margin-top: 22px;
+    color: #c5cabb;
+    line-height: 2;
+  }
+  .garden-hero-intro .garden-text-link {
+    margin-top: 17px;
+  }
+  .garden-world-shade {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(4, 8, 8, 0.78),
+        rgba(4, 8, 8, 0.6) 40%,
+        rgba(4, 8, 8, 0.1) 69%,
+        rgba(4, 8, 8, 0.68)
+      ),
+      linear-gradient(90deg, rgba(4, 8, 8, 0.35), transparent 82%);
+  }
+  .garden-hero-bottom {
+    display: block;
+    padding-right: 0;
+  }
+  .garden-edition {
+    display: none;
+  }
+  .garden-work-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 25px;
+  }
+  .garden-work-card .project-preview {
+    aspect-ratio: 1.6;
+  }
+  .garden-card-copy,
+  .garden-work-main .garden-card-copy {
+    padding: 23px;
+  }
+  .garden-card-copy h3,
+  .garden-work-main h3 {
+    font-size: 28px;
+  }
+  .garden-card-copy p {
+    font-size: 14px;
+  }
+  .garden-section-description {
+    font-size: 14px;
+  }
+  .garden-about {
+    min-height: 0;
+  }
+  .garden-contact {
+    min-height: 700px;
+  }
+  .garden-contact .garden-section-label {
+    margin-bottom: 55px;
+  }
+  .preview-portfolio p {
+    font-size: 17px;
+    margin-top: 0;
+  }
+  .preview-portfolio small {
+    margin-top: 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-preview-link:hover .preview-browser {
+    transform: rotate(-3deg);
+  }
+  .project-preview-link > svg,
+  .preview-browser {
+    transition: none;
+  }
+}

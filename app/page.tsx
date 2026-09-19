@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { GardenScene } from "@/components/garden-scene";
+import { ProjectPreview, type PreviewKind } from "@/components/project-preview";
 import { profile } from "@/data/profile";
 import { posts } from "@/data/posts";
 
@@ -9,21 +10,21 @@ export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 const work = [
   {
-    number: "01", title: "个人作品集", english: "A PLACE TO BEGIN",
+    number: "01", title: "个人作品集",
     description: "把项目、学习与思考，放进一座持续生长的个人花园。",
-    image: "kage-approach.webp", href: "/projects", label: "Web 开发 · 首版可用",
+    preview: "portfolio" as PreviewKind, href: "/projects", label: "Web 开发 · 首版可用",
     className: "garden-work-main",
   },
   {
-    number: "02", title: "算法实验室", english: "MAKE THE INVISIBLE VISIBLE",
+    number: "02", title: "算法实验室",
     description: "从排序开始，让抽象的步骤变得可以观察。",
-    image: "kage-lantern-court.webp", href: "/lab/sorting", label: "算法 · 排序演示可用",
+    preview: "sorting" as PreviewKind, href: "/lab/sorting", label: "算法 · 排序演示可用",
     className: "",
   },
   {
-    number: "03", title: "物理的直觉", english: "UNDERSTAND THROUGH EXPLORATION",
+    number: "03", title: "物理的直觉",
     description: "在图形、公式与交互之间，理解看不见的场。",
-    image: "kage-moonwater.webp", href: "/projects/university-physics", label: "物理 · 首版可用",
+    preview: "physics" as PreviewKind, href: "/projects/university-physics", label: "物理 · 首版可用",
     className: "",
   },
 ];
@@ -35,7 +36,6 @@ export default function HomePage() {
       <GardenScene />
       <section id="arrival" className="garden-arrival garden-chapter">
         <div className="garden-hero-meta">
-          <span>PERSONAL GARDEN / PORTFOLIO 2026</span>
           <span>代码 · 思考 · 探索</span>
         </div>
         <div className="garden-hero-intro">
@@ -44,14 +44,9 @@ export default function HomePage() {
           <p data-reveal>你好，我是 Chase Chen。<br />在代码与世界之间，探索、学习、创造。</p>
           <a className="garden-text-link" href="#work" data-reveal>走进我的作品 <ArrowUpRight size={17} /></a>
         </div>
-        <div className="garden-hero-signature" data-parallax="0.035" aria-hidden="true">
-          <p className="garden-wordmark">Chase Chen<span>.</span></p>
-          <p className="garden-signature-note">在持续生长的花园里，<br />留下每一次认真探索的痕迹。</p>
-        </div>
         <div className="garden-hero-bottom">
           <a href="#about" className="garden-scroll-link"><span className="garden-scroll-line" />向下探索 <ArrowDown size={13} /></a>
-          <span>LEARNING. BUILDING. BECOMING.</span>
-          <span className="garden-edition">SCUT / SOFTWARE ENGINEERING</span>
+          <span className="garden-edition">华南理工大学 · 软件工程</span>
         </div>
       </section>
       <section id="about" className="garden-chapter garden-about">
@@ -79,8 +74,8 @@ export default function HomePage() {
         <div className="garden-work-grid">
           {work.map((item) => (
             <Link href={item.href} className={`garden-work-card ${item.className}`} key={item.number} data-reveal>
-              <img src={`/garden/${item.image}`} alt="" width="1400" height="900" loading="lazy" />
-              <span className="garden-card-number">{item.number} / {item.english}</span>
+              <ProjectPreview kind={item.preview} />
+              <span className="garden-card-number">{item.number}</span>
               <span className="garden-card-arrow"><ArrowUpRight size={21} /></span>
               <div className="garden-card-copy"><span>{item.label}</span><h3>{item.title}</h3><p>{item.description}</p></div>
             </Link>

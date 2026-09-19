@@ -24,12 +24,12 @@ export function GradientButton({
   ariaLabel,
 }: GradientButtonProps) {
   const classes = cn(
-    "focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition duration-300",
+    "focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-sm px-5 py-2.5 text-sm font-semibold transition duration-300",
     "motion-safe:hover:-translate-y-0.5",
     variant === "primary" &&
-      "bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 text-slate-950 shadow-neon hover:shadow-lift",
+      "bg-[#d4bea0] text-[#141916] hover:bg-[#e5d4bb]",
     variant === "secondary" &&
-      "border border-white/12 bg-white/[0.07] text-slate-100 shadow-card backdrop-blur hover:border-cyan-300/35 hover:bg-white/[0.1]",
+      "border border-white/12 bg-white/[0.07] text-slate-100 hover:border-[#baa17f] hover:bg-white/[0.1]",
     variant === "ghost" &&
       "text-slate-300 hover:bg-white/[0.07] hover:text-white",
     className,

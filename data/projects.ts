@@ -1,4 +1,7 @@
+import type { PreviewKind } from "@/components/project-preview";
+
 export type Project = {
+  preview?: PreviewKind;
   title: string;
   description: string;
   stack: string[];
@@ -12,9 +15,21 @@ export type Project = {
 };
 
 export const projects: Project[] = [
-  {title:"大学物理学习动画演示",description:"按教材章节组织的原创交互物理演示。从静电场开始，用图形、公式和参数一起建立直觉。",stack:["React","TypeScript","SVG"],category:"物理与可视化",status:"首版可用",featured:false,learningFocus:"微元积分、对称性、分段边界与结果检验",detailUrl:"/projects/university-physics"},
+  {
+    preview: "physics",
+    title: "大学物理学习动画演示",
+    description:
+      "按教材章节组织的原创交互物理演示。从静电场开始，用图形、公式和参数一起建立直觉。",
+    stack: ["React", "TypeScript", "SVG"],
+    category: "物理与可视化",
+    status: "首版可用",
+    featured: false,
+    learningFocus: "微元积分、对称性、分段边界与结果检验",
+    detailUrl: "/projects/university-physics",
+  },
   {
     title: "个人作品集网站",
+    preview: "portfolio",
     description:
       "一个持续更新的技术成长主页，用于集中展示项目、技术文章、实验作品与学习方向。",
     stack: ["Next.js", "TypeScript", "Tailwind CSS"],
@@ -27,6 +42,7 @@ export const projects: Project[] = [
   },
   {
     title: "排序算法可视化实验室",
+    preview: "sorting",
     description:
       "可操作的排序实验，支持自定义数组、三种算法、单步播放、速度控制与过程统计。",
     stack: ["React", "TypeScript", "Node.js Test Runner"],
@@ -34,8 +50,7 @@ export const projects: Project[] = [
     status: "首版可用",
     featured: true,
     learningFocus: "算法步骤建模、状态可视化与边界测试",
-    sourceUrl:
-      "https://github.com/b1rd426/chasechen-portfolio/pull/8/files",
+    sourceUrl: "https://github.com/b1rd426/chasechen-portfolio/pull/8/files",
     demoUrl: "/lab/sorting",
   },
   {
