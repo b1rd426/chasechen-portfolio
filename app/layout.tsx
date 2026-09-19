@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 
 import "./globals.css";
 import "./garden.css";
+import "./editorial.css";
 
 const siteTitle = "Chase Chen | Software Engineering Portfolio";
 const siteDescription =

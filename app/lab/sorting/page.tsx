@@ -18,7 +18,7 @@ export default function SortingPage() {
       <PageHero
         eyebrow="算法实验"
         title="亲手观察排序算法的每一步"
-        description="输入一组数字，逐步查看比较、交换与有序区间如何变化。算法层先生成完整步骤序列，界面只负责播放和解释。"
+        description="输入一组数字，逐步查看比较、交换与有序区间如何变化。支持冒泡、选择与插入排序，按自己的节奏探索。"
       />
       <section className="py-10 sm:py-14">
         <Container>

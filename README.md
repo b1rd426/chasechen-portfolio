@@ -53,11 +53,11 @@ npm test
 
 ### 添加项目
 
-在 `data/projects.ts` 的 `projects` 数组中添加项目对象。可用字段包括 `status`、`featured`、`sourceUrl` 和 `demoUrl`；尚未上线的项目请不填写 `demoUrl`，页面会显示 `Demo: Coming soon`。
+在 `data/projects.ts` 的 `projects` 数组中添加项目对象。可用字段包括 `status`、`featured`、`sourceUrl`、`detailUrl` 和 `demoUrl`。`preview` 可选 `portfolio`、`sorting` 或 `physics`，使用原创 HTML / SVG 项目插图。没有演示或详情入口的项目归入构思列表。
 
 ### 添加博客
 
-在 `data/posts.ts` 的 `posts` 数组中添加文章卡片信息，包括标题、摘要、分类、日期、阅读时间和标签。发布正文时补充 `slug` 与 `sections`，页面会生成 `/blog/[slug]` 详情页。
+在 `data/posts.ts` 的 `posts` 数组中添加文章卡片信息，包括标题、摘要、分类、日期、阅读时间和标签。发布正文时补充 `slug` 与 `sections`，页面会生成 `/blog/[slug]` 详情页。已发布文章与仍在酝酿的条目分开展示。
 
 ### 添加实验室内容
 
@@ -81,3 +81,9 @@ npm test
 
 物理项目仅包含原创公开模型、说明和图形；教材、试卷、个人作答及私有笔记
 不属于此仓库。
+
+## 页面视觉
+
+庭院与内页共用宋体标题、暖白正文、浅金色强调和细线分隔。
+`app/editorial.css` 管理内页排版和项目预览；实验里的状态颜色仍用于区分
+比较、交换、场源与矢量。物理数值模型与页面外观保持独立。

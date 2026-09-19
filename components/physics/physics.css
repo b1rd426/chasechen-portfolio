@@ -5,8 +5,9 @@
 }
 .physics-project h2 {
   font-size: 1.15rem;
-  font-weight: 650;
-  color: #f1f5f9;
+  font-family: var(--garden-serif);
+  font-weight: 400;
+  color: #e8e6d9;
   line-height: 1.65;
 }
 .physics-project p {
@@ -15,11 +16,11 @@
 .ph-kicker {
   font-size: 0.75rem;
   letter-spacing: 0.12em;
-  color: #93c5fd;
+  color: #c6b091;
   margin-bottom: 0.5rem;
 }
 .ph-link {
-  color: #67e8f9;
+  color: #d6bf98;
   display: inline-block;
   margin-top: 1rem;
   font-weight: 600;
@@ -33,15 +34,15 @@
   gap: 1.5rem;
   align-items: center;
   margin-bottom: 2rem;
-  color: #cbd5e1;
+  color: #c3cbbc;
 }
 .ph-pill {
   display: inline-block;
   white-space: nowrap;
-  border: 1px solid #334155;
-  border-radius: 30px;
+  border: 1px solid #3a483c;
+  border-radius: 3px;
   padding: 0.3rem 0.8rem;
-  color: #fde68a;
+  color: #d6bf98;
   font-size: 0.75rem;
 }
 .ph-chapter-grid {
@@ -52,27 +53,28 @@
 .ph-chapter {
   display: flex;
   gap: 1.5rem;
-  border: 1px solid #1e293b;
-  border-radius: 18px;
+  border: 1px solid #29362b;
+  border-radius: 3px;
   padding: 1.5rem;
-  background: #08111f;
+  background: #0d1511;
 }
 .ph-chapter p:not(.ph-kicker) {
-  color: #94a3b8;
+  color: #a4b09e;
   font-size: 0.85rem;
   margin-top: 0.7rem;
 }
 .ph-chapter.is-ready {
-  border-color: #155e75;
-  background: linear-gradient(120deg, #0e2837, #08111f);
+  border-color: #71684f;
+  background: linear-gradient(120deg, #202c22, #0d1511);
 }
 .ph-index {
   font-size: 2.3rem;
-  color: #334155;
-  font-weight: 700;
+  color: #3a483c;
+  font-family: Georgia, serif;
+  font-weight: 400;
 }
 .is-ready .ph-index {
-  color: #67e8f9;
+  color: #d6bf98;
 }
 .ph-demo-grid {
   display: grid;
@@ -81,22 +83,22 @@
   margin: 2rem 0;
 }
 .ph-demo-card {
-  border: 1px solid #334155;
-  background: #0b1425;
-  border-radius: 20px;
+  border: 1px solid #3a483c;
+  background: #101a15;
+  border-radius: 3px;
   padding: 1.5rem;
   transition: border-color 0.2s;
 }
 .ph-demo-card:hover {
-  border-color: #67e8f9;
+  border-color: #d6bf98;
 }
 .ph-demo-card > p {
-  color: #cbd5e1;
+  color: #c3cbbc;
   margin-top: 0.7rem;
 }
 .ph-card-art {
-  background: radial-gradient(ellipse at center, #153047, #091322);
-  border-radius: 12px;
+  background: radial-gradient(ellipse at center, #27392c, #0d1612);
+  border-radius: 3px;
   margin-bottom: 1.7rem;
 }
 .ph-breadcrumb {
@@ -104,37 +106,38 @@
   flex-wrap: wrap;
   gap: 0.7rem;
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: #a4b09e;
 }
 .ph-breadcrumb a:hover {
-  color: #67e8f9;
+  color: #d6bf98;
 }
 .ph-demo-header {
   margin: 2rem 0;
 }
 .ph-demo-header h1 {
   font-size: clamp(1.7rem, 4vw, 2.7rem);
-  font-weight: 650;
-  color: #f8fafc;
+  font-family: var(--garden-serif);
+  font-weight: 400;
+  color: #eae9df;
   line-height: 1.4;
 }
 .ph-demo-header > p:last-child {
-  color: #cbd5e1;
+  color: #c3cbbc;
   margin-top: 1rem;
   max-width: 48rem;
 }
 .ph-workbench {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 290px;
-  border: 1px solid #334155;
-  border-radius: 20px;
+  border: 1px solid #3a483c;
+  border-radius: 3px;
   overflow: hidden;
-  background: #091322;
+  background: #0d1612;
 }
 .ph-scene {
   min-width: 0;
   padding: 1.4rem;
-  background: radial-gradient(ellipse at top, #11283b60, transparent 65%);
+  background: radial-gradient(ellipse at top, #263d2960, transparent 65%);
 }
 .ph-scene-top {
   display: flex;
@@ -142,7 +145,7 @@
   align-items: center;
   gap: 1rem;
   font-size: 0.75rem;
-  color: #94a3b8;
+  color: #a4b09e;
 }
 .ph-scene svg {
   width: 100%;
@@ -152,8 +155,8 @@
   font-size: 15px;
 }
 .ph-controls {
-  background: #0c1728;
-  border-left: 1px solid #263449;
+  background: #111d17;
+  border-left: 1px solid #324137;
   padding: 1.5rem;
 }
 .ph-controls h2 {
@@ -168,11 +171,11 @@
   justify-content: space-between;
   gap: 1rem;
   font-size: 0.82rem;
-  color: #cbd5e1;
+  color: #c3cbbc;
 }
 .ph-slider output {
   font-variant-numeric: tabular-nums;
-  color: #f8fafc;
+  color: #eae9df;
 }
 .ph-slider input {
   width: 100%;
@@ -184,11 +187,11 @@
 .ph-slider small {
   display: block;
   font-size: 0.67rem;
-  color: #64748b;
+  color: #98a58f;
 }
 .ph-caption {
   font-size: 0.82rem;
-  color: #cbd5e1;
+  color: #c3cbbc;
   border-left: 2px solid #fbbf24;
   padding-left: 1rem;
   margin: 0.3rem 0 1.4rem;
@@ -201,13 +204,13 @@
 }
 .ph-readout {
   padding: 0.85rem;
-  border: 1px solid #263449;
-  border-radius: 12px;
+  border: 1px solid #324137;
+  border-radius: 3px;
   min-width: 0;
 }
 .ph-readout > span {
   display: block;
-  color: #94a3b8;
+  color: #a4b09e;
   font-size: 0.7rem;
 }
 .ph-readout strong {
@@ -221,12 +224,12 @@
 }
 .ph-readout small {
   font-size: 0.7rem;
-  color: #94a3b8;
+  color: #a4b09e;
   font-weight: 400;
 }
 .ph-mini-readings {
   font-size: 0.8rem;
-  color: #cbd5e1;
+  color: #c3cbbc;
   font-variant-numeric: tabular-nums;
 }
 .ph-mini-readings p {
@@ -234,7 +237,7 @@
 }
 .ph-footnote {
   font-size: 0.75rem;
-  color: #94a3b8;
+  color: #a4b09e;
   margin-top: 1.5rem;
 }
 .ph-steps {
@@ -255,16 +258,16 @@
 .ph-step-tabs button,
 .ph-mode-tabs button {
   padding: 0.55rem 0.85rem;
-  border: 1px solid #334155;
-  border-radius: 9px;
-  color: #cbd5e1;
+  border: 1px solid #3a483c;
+  border-radius: 3px;
+  color: #c3cbbc;
   font-size: 0.78rem;
   transition: background 0.15s;
 }
 .ph-actions button:hover,
 .ph-step-tabs button:hover,
 .ph-mode-tabs button:hover {
-  background: #1e293b;
+  background: #29362b;
 }
 .ph-actions button:disabled {
   opacity: 0.35;
@@ -272,36 +275,36 @@
 }
 .ph-actions small {
   font-size: 0.7rem;
-  color: #94a3b8;
+  color: #a4b09e;
   flex-basis: 100%;
   margin-top: 0.35rem;
 }
 .ph-step-tabs button.active,
 .ph-mode-tabs button.active {
-  background: #123044;
-  color: #a5f3fc;
-  border-color: #0e7490;
+  background: #34372b;
+  color: #e3cfac;
+  border-color: #9b8a68;
 }
 .ph-mode-tabs {
   margin-bottom: 1.2rem;
 }
 .ph-panel {
   padding: 1.6rem;
-  border: 1px solid #263449;
-  border-radius: 18px;
+  border: 1px solid #324137;
+  border-radius: 3px;
   margin: 1rem 0;
-  background: #08111f;
+  background: #0d1511;
   min-width: 0;
 }
 .ph-panel p {
   font-size: 0.85rem;
-  color: #cbd5e1;
+  color: #c3cbbc;
 }
 .ph-formula {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.8rem 0.2rem;
-  color: #f1f5f9;
+  color: #e8e6d9;
   max-width: 100%;
   font-size: 1rem;
 }
@@ -315,18 +318,18 @@
   margin-top: 2.5rem;
 }
 .ph-tasks details {
-  border-bottom: 1px solid #263449;
+  border-bottom: 1px solid #324137;
   padding: 1rem 0;
 }
 .ph-tasks summary {
   cursor: pointer;
-  color: #cbd5e1;
+  color: #c3cbbc;
   font-size: 0.95rem;
   line-height: 1.8;
 }
 .ph-tasks p {
   margin: 1rem 0;
-  color: #94a3b8;
+  color: #a4b09e;
   font-size: 0.9rem;
   max-width: 50rem;
 }
@@ -337,7 +340,7 @@
   height: 90px;
   margin: 1rem 0;
   padding-bottom: 0.4rem;
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid #3a483c;
 }
 .ph-contribution-bars button {
   flex: 1;
@@ -362,7 +365,7 @@
 .physics-project a:focus-visible,
 .physics-project input:focus-visible,
 .physics-project summary:focus-visible {
-  outline: 2px solid #67e8f9;
+  outline: 2px solid #d6bf98;
   outline-offset: 4px;
 }
 @media (max-width: 850px) {
@@ -371,7 +374,7 @@
   }
   .ph-controls {
     border-left: 0;
-    border-top: 1px solid #263449;
+    border-top: 1px solid #324137;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.4rem 1.4rem;
@@ -446,19 +449,19 @@
 .ph-formula-hint {
   margin-top: -0.5rem;
   margin-bottom: 1rem;
-  color: #a7b5ca;
+  color: #b2bdab;
   font-size: 0.78rem;
 }
 .ph-potential-regions > p {
   margin: 1.1rem 0 0.2rem;
-  color: #a7b5ca;
+  color: #b2bdab;
   font-size: 0.9rem;
 }
 .ph-potential-regions .ph-formula {
   margin-top: 0.4rem;
 }
-.ph-cap-select { display: grid; gap: .6rem; color: #cbd5e1; font-size: .9rem; margin-bottom: 1.25rem; }
-.ph-cap-select select { width: 100%; background: #0f172a; border: 1px solid #475569; color: #f1f5f9; border-radius: 8px; padding: .7rem; }
+.ph-cap-select { display: grid; gap: .6rem; color: #c3cbbc; font-size: .9rem; margin-bottom: 1.25rem; }
+.ph-cap-select select { width: 100%; background: #0d1511; border: 1px solid #475569; color: #e8e6d9; border-radius: 3px; padding: .7rem; }
 .ph-cap-fields { margin: 1rem; }
 .ph-draw { stroke-dasharray: 1; animation: ph-line-draw .75s ease-out both; }
 @keyframes ph-line-draw { from { stroke-dashoffset: 1; opacity: .25; } to { stroke-dashoffset: 0; opacity: 1; } }
