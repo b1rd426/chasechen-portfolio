@@ -6,14 +6,17 @@
     "dev": "WATCHPACK_POLLING=true next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:physics": "node --experimental-strip-types --test tests/*.test.mjs"
   },
   "dependencies": {
+    "katex": "^0.18.7",
     "lucide-react": "^1.17.0",
     "motion": "^12.40.0",
     "next": "^15.5.7",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "three": "0.149.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

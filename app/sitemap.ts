@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { experiments } from "@/data/experiments";
+import { physicsRoutes } from "@/data/physics";
 import { posts } from "@/data/posts";
 
 const baseUrl = "https://www.chase0426.com";
@@ -15,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((experiment) => experiment.demoUrl?.startsWith("/"))
     .map((experiment) => experiment.demoUrl as string);
 
-  return [...staticRoutes, ...blogRoutes, ...labRoutes].map((route) => ({
+  return Array.from(new Set([...staticRoutes, ...blogRoutes, ...labRoutes, ...physicsRoutes])).map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified,
     changeFrequency: route === "" ? "weekly" : "monthly",

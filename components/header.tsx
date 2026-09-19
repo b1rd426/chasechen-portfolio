@@ -1,105 +1,76 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-
-import { Container } from "@/components/container";
+import { useEffect, useRef, useState } from "react";
+import { profile } from "@/data/profile";
 
 const navItems = [
-  { href: "/", label: "首页" },
-  { href: "/projects", label: "项目" },
-  { href: "/blog", label: "博客" },
-  { href: "/lab", label: "实验室" },
-  { href: "/about", label: "关于我" },
+  { href: "/", label: "首页", english: "HOME" },
+  { href: "/projects", label: "作品", english: "WORK" },
+  { href: "/blog", label: "手记", english: "JOURNAL" },
+  { href: "/lab", label: "实验室", english: "LAB" },
+  { href: "/about", label: "关于", english: "ABOUT" },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const isActive = (href: string) => href === "/" ? pathname === href : pathname.startsWith(href);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === href : pathname.startsWith(href);
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { setMenuOpen(false); menuButton.current?.focus(); }
+    };
+    const onPointer = (event: PointerEvent) => {
+      if (event.target instanceof Node && !headerRef.current?.contains(event.target)) setMenuOpen(false);
+    };
+    const query = matchMedia("(min-width: 768px)");
+    const onSize = () => { if (query.matches) setMenuOpen(false); };
+    window.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointer);
+    query.addEventListener("change", onSize);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointer);
+      query.removeEventListener("change", onSize);
+    };
+  }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/72 shadow-[0_1px_0_rgba(255,255,255,0.08)_inset] backdrop-blur-xl">
-      <Container className="flex min-h-16 items-center justify-between gap-5 py-3">
-        <div className="flex min-w-0 items-center gap-3">
-          <Link
-            href="/"
-            className="focus-ring group inline-flex shrink-0 items-center gap-3 rounded-lg text-white"
-            aria-label="Chase Chen 首页"
-            onClick={() => setMenuOpen(false)}
-          >
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-cyan-200/25 bg-gradient-to-br from-cyan-300 via-blue-400 to-violet-400 text-slate-950 shadow-neon transition group-hover:-translate-y-0.5">
-              <span className="text-sm font-semibold">CC</span>
-            </span>
-            <span className="text-base font-semibold transition group-hover:text-cyan-100">
-              Chase Chen
-            </span>
-          </Link>
-          <span className="hidden h-7 items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 text-xs font-medium text-slate-300 lg:inline-flex">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(34,211,238,0.75)]" />
-            软件工程学生
-          </span>
-        </div>
-        <button
-          type="button"
-          className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.07] text-slate-100 transition hover:border-cyan-200/30 md:hidden"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-navigation"
-          aria-label={menuOpen ? "关闭导航菜单" : "打开导航菜单"}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span className="sr-only">导航菜单</span>
-          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-        <nav
-          aria-label="主要导航"
-          className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[0.06] p-1 text-sm text-slate-300 shadow-card md:flex"
-        >
+    <header ref={headerRef} className="garden-header">
+      <div className="garden-header-inner">
+        <Link href="/" className="garden-brand focus-ring" aria-label="Chase Chen 首页" onClick={() => setMenuOpen(false)}>
+          <span><strong>Chase Chen<span className="garden-brand-period">.</span></strong><small>A GARDEN OF IDEAS</small></span>
+        </Link>
+        <nav className="garden-desktop-nav" aria-label="主要导航">
           {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              aria-current={isActive(item.href) ? "page" : undefined}
-              className={`focus-ring whitespace-nowrap rounded-full px-4 py-2 transition ${
-                isActive(item.href)
-                  ? "bg-cyan-300 font-medium text-slate-950 shadow-neon"
-                  : "hover:bg-white/[0.08] hover:text-white"
-              }`}
-            >
-              {item.label}
+            <Link key={item.href} href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+              <span>{item.label}</span><small>{item.english}</small>
             </Link>
           ))}
         </nav>
-      </Container>
-      {menuOpen ? (
-        <nav
-          id="mobile-navigation"
-          aria-label="移动端导航"
-          className="border-t border-white/10 bg-slate-950/95 shadow-panel backdrop-blur md:hidden"
-        >
-          <Container className="grid grid-cols-2 gap-2 py-3">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={isActive(item.href) ? "page" : undefined}
-                onClick={() => setMenuOpen(false)}
-                className={`focus-ring rounded-lg px-4 py-3 text-sm transition ${
-                  isActive(item.href)
-                    ? "bg-cyan-300 font-medium text-slate-950 shadow-neon"
-                    : "text-slate-300 hover:bg-white/[0.08] hover:text-white"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </Container>
+        <a className="garden-header-github" href={profile.github} target="_blank" rel="noreferrer" aria-label="打开 Chase Chen 的 GitHub">GITHUB <ArrowUpRight size={14} /></a>
+        <button ref={menuButton} type="button" className="garden-menu-toggle focus-ring" aria-expanded={menuOpen}
+          aria-controls="mobile-navigation" aria-label={menuOpen ? "关闭导航菜单" : "打开导航菜单"}
+          onClick={() => setMenuOpen((open) => !open)}>
+          {menuOpen ? <X size={23} /> : <Menu size={23} />}
+        </button>
+      </div>
+      {menuOpen && (
+        <nav id="mobile-navigation" className="garden-mobile-nav" aria-label="移动端导航">
+          {navItems.map((item, index) => (
+            <Link key={item.href} href={item.href} aria-current={isActive(item.href) ? "page" : undefined} onClick={() => setMenuOpen(false)}>
+              <span>0{index + 1}</span><span>{item.label}</span><small>{item.english}</small><ArrowUpRight size={18} />
+            </Link>
+          ))}
         </nav>
-      ) : null}
+      )}
     </header>
   );
 }

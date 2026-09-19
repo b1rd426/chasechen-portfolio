@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        canvas: "#030712",
-        surface: "#08111f",
+        canvas: "#080b0d",
+        surface: "#101617",
         ink: {
           950: "#f8fafc",
           700: "#cbd5e1",

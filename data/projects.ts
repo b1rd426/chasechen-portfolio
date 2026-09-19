@@ -6,11 +6,13 @@ export type Project = {
   status: string;
   featured: boolean;
   learningFocus: string;
+  detailUrl?: string;
   sourceUrl?: string;
   demoUrl?: string;
 };
 
 export const projects: Project[] = [
+  {title:"大学物理学习动画演示",description:"按教材章节组织的原创交互物理演示。从静电场开始，用图形、公式和参数一起建立直觉。",stack:["React","TypeScript","SVG"],category:"物理与可视化",status:"首版可用",featured:false,learningFocus:"微元积分、对称性、分段边界与结果检验",detailUrl:"/projects/university-physics"},
   {
     title: "个人作品集网站",
     description:

@@ -1,12 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
-import { AuroraBackground } from "@/components/aurora-background";
-import { CursorSpotlight } from "@/components/cursor-spotlight";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 
 import "./globals.css";
+import "./garden.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.chase0426.com"),
@@ -63,18 +62,17 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: "dark",
-  themeColor: "#030712",
+  themeColor: "#080b0d",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="zh-CN">
       <body className="bg-canvas text-slate-100 antialiased">
-        <AuroraBackground />
-        <CursorSpotlight />
-        <div className="relative z-10 flex min-h-screen flex-col">
+        <a href="#main-content" className="skip-link">跳到正文</a>
+        <div className="site-shell relative flex min-h-screen flex-col">
           <Header />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" tabIndex={-1} className="flex-1">{children}</main>
           <Footer />
         </div>
       </body>
